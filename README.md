@@ -87,7 +87,7 @@ Partiendo del ejemplo del contador, cambiar el color del borde y del fondo, redo
 ### Cómo lo he hecho
 1. En `src/app/index.tsx` creé el estado `contador` con `useState(0)`.
 2. Puse dos `Button`, cada uno con su `onPress`: el de «Incrementar» hace `setContador(n => n + 1)` y el de «Decrementar» hace `setContador(n => n - 1)`.
-3. Metí el texto y los botones dentro de una caja (`View`) con fondo lavanda, borde morado y `borderRadius: 20`, y puse los botones en fila con `flexDirection: 'row'`.
+3. Puse el fondo de la pantalla en azul (`lightskyblue`) y metí el texto y los botones dentro de una caja (`View`) con fondo azul clarito, borde azul y `borderRadius: 20`, y puse los botones en fila con `flexDirection: 'row'`.
 4. Los estilos van todos en `StyleSheet.create()`. El color de los botones lo cambio con la prop `color`, porque el `Button` nativo no deja ponerle estilos como a un `View`.
 
 ```tsx

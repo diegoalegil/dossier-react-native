@@ -20,14 +20,14 @@ export default function Index() {
 const styles = StyleSheet.create({
   pantalla: {
     alignItems: 'center',
-    backgroundColor: 'lightpink',
+    backgroundColor: 'lightskyblue',
     flex: 1,
     justifyContent: 'center',
   },
   caja: {
     alignItems: 'center',
-    backgroundColor: 'lavender',
-    borderColor: 'mediumpurple',
+    backgroundColor: 'aliceblue',
+    borderColor: 'royalblue',
     borderRadius: 20,
     borderWidth: 3,
     gap: 15,
