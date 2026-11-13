@@ -20,6 +20,8 @@ export default function RootLayout() {
         <Stack.Screen name="practica06" options={{ title: 'Práctica 6' }} />
         <Stack.Screen name="practica07" options={{ title: 'Práctica 7' }} />
         <Stack.Screen name="practica08" options={{ title: 'Práctica 8' }} />
+        <Stack.Screen name="practica09" options={{ title: 'Práctica 9' }} />
+        <Stack.Screen name="practica09-1" options={{ title: 'Práctica 9.1' }} />
       </Stack>
     </ThemeProvider>
   );

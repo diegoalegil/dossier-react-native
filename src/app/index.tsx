@@ -26,6 +26,12 @@ export default function Index() {
       <Link href="/practica08" style={styles.enlace}>
         Práctica 8. Círculos dinámicos
       </Link>
+      <Link href="/practica09" style={styles.enlace}>
+        Práctica 9. Alineación e imágenes
+      </Link>
+      <Link href="/practica09-1" style={styles.enlace}>
+        Práctica 9.1. Imagen aleatoria
+      </Link>
     </ScrollView>
   );
 }

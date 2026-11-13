@@ -37,6 +37,8 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [6. Sustituir los botones](#práctica-6-sustituir-los-botones) | Terminada |
 | [7. Nombre y estilos personalizados](#práctica-7-nombre-y-estilos-personalizados) | Terminada |
 | [8. Círculos dinámicos](#práctica-8-círculos-dinámicos) | Terminada |
+| [9. Distribución, alineación e imágenes](#práctica-9-distribución-alineación-e-imágenes) | Terminada |
+| [9.1. Imagen aleatoria](#práctica-91-imagen-aleatoria) | Terminada |
 
 ---
 
@@ -328,6 +330,78 @@ Con `nowrap` y `column` salen todos en una columna y los últimos se quedan fuer
 
 ### Problemas que tuve
 - Ninguno. Al escenario le puse `overflow: 'hidden'` para que, con `nowrap`, los círculos que no caben se corten en el borde y no se salgan por encima de lo demás.
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 9. Distribución, alineación e imágenes
+
+### Qué hay que hacer
+Una pantalla con un campo de texto para elegir un valor válido de `justifyContent`, botones para cambiar `alignItems` y tres imágenes, al menos una del proyecto con `require`. El escenario con `flexWrap: 'nowrap'` y la alineación activa escrita en pantalla.
+
+### Cómo lo he hecho
+1. Puse los valores válidos en un array y saqué el tipo de ahí. Así TypeScript sabe que solo pueden ser esos y no da problemas al ponerlos en el estilo:
+
+```ts
+const valoresJustify = ['flex-start', 'center', 'flex-end', 'space-between', 'space-around', 'space-evenly'] as const;
+type Justify = (typeof valoresJustify)[number];
+```
+
+2. El `TextInput` está controlado con el estado `texto`. Solo cambio el `justifyContent` si lo que escribo está en la lista. Si no, sale un aviso en rojo con los valores que valen y se queda el último que era correcto.
+3. Tres botones (`flex-start`, `center` y `flex-end`) cambian el `alignItems`. El que está puesto sale en azul más oscuro.
+4. Las imágenes son tres:
+   - el logo de React del proyecto, con `require('../../assets/images/react-logo.png')`;
+   - el logo pequeño de la web de React Native, con `{ uri: ... }`;
+   - el logo de Expo de GitHub, también con `{ uri: ... }`.
+5. Encima del escenario se ve lo que hay puesto, por ejemplo `justifyContent: space-between · alignItems: flex-end`.
+
+### Capturas
+Con `center` en los dos:
+
+![Práctica 9: justifyContent center y alignItems center](capturas/practica-09-center.jpg)
+
+Escribiendo `space-between` y pulsando `flex-end`:
+
+![Práctica 9: justifyContent space-between y alignItems flex-end](capturas/practica-09-space-between.jpg)
+
+### Problemas que tuve
+- La tercera imagen al principio era una foto de picsum.photos, pero no cargaba porque la web no respondía. La cambié por el logo de Expo de GitHub, que sí carga. Por eso el dossier avisa de que las URL de fuera pueden fallar.
+- Al escribir en el campo, mientras pones el valor a medias (por ejemplo `space-`) sale el aviso rojo. Es normal: desaparece cuando el valor ya es válido.
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 9.1. Imagen aleatoria
+
+### Qué hay que hacer
+Con una colección de imágenes locales, un botón que elige una al azar con `Math.floor(Math.random() * imagenes.length)` y guarda la posición con `useState`.
+
+### Cómo lo he hecho
+1. Hice una lista con cinco imágenes que ya venían en `assets/images`. Cada `require` va escrito entero, porque la ruta de `require` no se puede montar con una variable.
+
+```tsx
+const imagenes = [
+  { nombre: 'Logo de React', source: require('../../assets/images/react-logo.png') },
+  { nombre: 'Logo de Expo', source: require('../../assets/images/expo-logo.png') },
+  ...
+];
+```
+
+2. La posición va en un estado y la imagen que se ve es `imagenes[indice]`.
+3. El botón `IMAGEN ALEATORIA` hace `setIndice(Math.floor(Math.random() * imagenes.length))`.
+4. Debajo de la imagen sale su nombre y la posición, por ejemplo «Icono de la app (3 de 5)».
+
+### Capturas
+![Práctica 9.1: sale el icono de la app](capturas/practica-09-1-icono.jpg)
+
+![Práctica 9.1: al volver a pulsar sale el logo de React](capturas/practica-09-1-react.jpg)
+
+### Problemas que tuve
+- Ninguno. Si sale la misma imagen dos veces seguidas es normal, porque es al azar.
 
 ### Estado
 Terminada.
