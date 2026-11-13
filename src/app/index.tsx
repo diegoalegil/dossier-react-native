@@ -14,6 +14,9 @@ export default function Index() {
       <Link href="/practica04" style={styles.enlace}>
         Práctica 4. Tres cajas
       </Link>
+      <Link href="/practica05" style={styles.enlace}>
+        Práctica 5. Flex dinámico
+      </Link>
     </ScrollView>
   );
 }

@@ -33,6 +33,7 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [2. Contador con dos botones](#práctica-2-contador-con-dos-botones) | Terminada |
 | [3. InicioScreen y estilos separados](#práctica-3-inicioscreen-y-estilos-separados) | Terminada |
 | [4. Tres cajas](#práctica-4-tres-cajas) | Terminada |
+| [5. Modificar flex dinámicamente](#práctica-5-modificar-flex-dinámicamente) | Terminada |
 
 ---
 
@@ -193,6 +194,34 @@ Una pantalla `PrincipalScreen` con el texto «Contenedor Principal» y un escena
 
 ### Problemas que tuve
 - Al cambiar las pestañas por el `Stack`, Expo Go seguía enseñando la versión vieja con las pestañas. Se arregló recargando la app.
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 5. Modificar flex dinámicamente
+
+### Qué hay que hacer
+Ponerle a cada caja dos botones, uno que sube su `flex` y otro que lo baja, enseñar el valor y ver cómo se reparte el espacio. Cada caja con su propio estado y sin valores negativos.
+
+### Cómo lo he hecho
+1. Hice otro componente, `src/components/CajaFlex.tsx`, para no romper la práctica 4. Esta caja no tiene altura fija, porque con `height: 100` el `flex` casi no se nota (lo avisa el dossier).
+2. Cada caja tiene su propio estado, `const [valorFlex, setValorFlex] = useState(1);`, y se lo paso al estilo: `{ backgroundColor: bg, flex: valorFlex }`.
+3. Los botones hacen `setValorFlex(n => n + 1)` y `setValorFlex(n => Math.max(0, n - 1))`. Con el `Math.max` nunca baja de 0.
+4. La pantalla es `src/screens/FlexScreen.tsx`, con las tres cajas en el escenario.
+
+### Capturas
+Al entrar, las tres tienen `flex: 1` y ocupan lo mismo:
+
+![Práctica 5: las tres cajas con flex 1](capturas/practica-05-flex-inicio.jpg)
+
+Después de subir la caja 2 a `flex: 3` y bajar la 3 a `flex: 0`, la 2 se queda con casi todo el espacio y la 3 solo ocupa lo que mide su contenido:
+
+![Práctica 5: la caja 2 con flex 3 y la 3 con flex 0](capturas/practica-05-flex-cambiado.jpg)
+
+### Problemas que tuve
+- Ninguno. Me fijé en que con `flex: 0` la caja no desaparece: se queda del tamaño del texto y los botones, así que se puede volver a subir.
 
 ### Estado
 Terminada.
