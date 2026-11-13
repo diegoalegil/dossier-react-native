@@ -39,6 +39,8 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [8. Círculos dinámicos](#práctica-8-círculos-dinámicos) | Terminada |
 | [9. Distribución, alineación e imágenes](#práctica-9-distribución-alineación-e-imágenes) | Terminada |
 | [9.1. Imagen aleatoria](#práctica-91-imagen-aleatoria) | Terminada |
+| [10. Calculadora](#práctica-10-calculadora) | Terminada |
+| De la 11 a la 40 | Pendientes |
 
 ---
 
@@ -402,6 +404,60 @@ const imagenes = [
 
 ### Problemas que tuve
 - Ninguno. Si sale la misma imagen dos veces seguidas es normal, porque es al azar.
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 10. Calculadora
+
+### Qué hay que hacer
+Copiar la calculadora de la figura del dossier: la pantalla del resultado y las filas de teclas. Las teclas tienen que ser un componente reutilizable con `TouchableOpacity`, las filas con Flexbox y el resultado en un estado. Sin usar `eval`.
+
+### Cómo lo he hecho
+1. `src/components/TeclaCalculadora.tsx`: cada tecla es un `TouchableOpacity` redondo (`aspectRatio: 1` y `borderRadius: 100`). Tiene props para el texto, el color, el color del texto y si es ancha, que es la del 0.
+2. `src/screens/CalculadoraScreen.tsx`: cinco filas con `flexDirection: 'row'` y `gap`. Los colores son como en la figura: gris claro para AC, ± y %, naranja para las operaciones y gris oscuro para los números.
+3. Uso cuatro estados:
+   - `pantalla`: lo que se ve;
+   - `anterior`: el primer número;
+   - `operacion`: la operación que está pendiente;
+   - `esperando`: si el siguiente número tiene que empezar de cero.
+4. Las cuentas las hace la función `calcular` con un `switch`, nada de `eval`:
+
+```ts
+const calcular = (a: number, b: number, operacion: Operacion) => {
+  switch (operacion) {
+    case '+':
+      return a + b;
+    case '-':
+      return a - b;
+    case 'x':
+      return a * b;
+    case '/':
+      return b === 0 ? NaN : a / b;
+  }
+};
+```
+
+5. Si encadenas operaciones (por ejemplo `2 + 3 x 4 =`), va haciendo la cuenta sobre la marcha y da 20. Arriba, en pequeño, sale la operación pendiente (`125 /`).
+6. El resultado lleva `numberOfLines={1}` y `adjustsFontSizeToFit` para que los números largos quepan en una línea.
+
+### Capturas
+Escribiendo `125 / 4`:
+
+![Práctica 10: la calculadora con la operación pendiente](capturas/practica-10-operacion.jpg)
+
+Al pulsar `=`, con el componente `TeclaCalculadora` abierto en el editor:
+
+![Práctica 10: el resultado 31.25](capturas/practica-10-resultado.jpg)
+
+### Problemas que tuve
+- Los decimales en JavaScript no son exactos: `0.1 + 0.2` da `0.30000000000000004`. Para que salga `0.3` redondeo el resultado con `toPrecision(12)` antes de enseñarlo.
+- En JavaScript dividir entre 0 da `Infinity`, así que en ese caso hago que salga «Error», y al pulsar otro número se empieza de nuevo.
+- El 0 es el doble de ancho que las demás teclas. Le puse `flex: 2` y `aspectRatio: 2.1` para que quede a la misma altura que las otras.
+
+Lo probé con `0.1 + 0.2` (sale 0.3), `5 / 0` (sale Error), `2 + 3 x 4` (sale 20), `9 ± x 2` (sale -18) y `50 %` (sale 0.5).
 
 ### Estado
 Terminada.

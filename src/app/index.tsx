@@ -32,6 +32,9 @@ export default function Index() {
       <Link href="/practica09-1" style={styles.enlace}>
         Práctica 9.1. Imagen aleatoria
       </Link>
+      <Link href="/practica10" style={styles.enlace}>
+        Práctica 10. Calculadora
+      </Link>
     </ScrollView>
   );
 }
