@@ -15,6 +15,16 @@ npx expo start
 
 Con el emulador de Android Studio abierto, pulso la tecla `a` y se abre la app en Expo Go.
 
+## Cómo está organizado el proyecto
+
+Desde la práctica 4 la app abre con un índice que tiene un enlace a cada práctica, así no se pierde ninguna:
+
+- `src/app/`: las rutas de Expo Router. Cada práctica tiene su archivo (`practica01.tsx`, `practica02.tsx`...) que solo exporta su pantalla, por ejemplo `export { default } from '../screens/HolaMundoScreen';`. El `index.tsx` es el índice con los `Link`.
+- `src/app/_layout.tsx`: cambié las pestañas que traía la plantilla por un `Stack`, con el título de cada práctica arriba y la flecha para volver al índice. También quité `explore.tsx`, que era de la plantilla.
+- `src/screens/`: el código de cada pantalla.
+- `src/components/`: los componentes que reutilizo.
+- `capturas/`: las capturas de este README.
+
 ## Prácticas
 
 | Práctica | Estado |
@@ -22,6 +32,7 @@ Con el emulador de Android Studio abierto, pulso la tecla `a` y se abre la app e
 | [1. Hola mundo](#práctica-1-hola-mundo) | Terminada |
 | [2. Contador con dos botones](#práctica-2-contador-con-dos-botones) | Terminada |
 | [3. InicioScreen y estilos separados](#práctica-3-inicioscreen-y-estilos-separados) | Terminada |
+| [4. Tres cajas](#práctica-4-tres-cajas) | Terminada |
 
 ---
 
@@ -151,6 +162,37 @@ Lo bueno es que `src/app/` es lo que Expo Router usa como rutas y en `src/screen
 
 ### Problemas que tuve
 - Ninguno. Comprobé que no había errores al importar y que el contador seguía sumando y restando igual.
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 4. Tres cajas
+
+### Qué hay que hacer
+Una pantalla `PrincipalScreen` con el texto «Contenedor Principal» y un escenario con `flex: 1` donde van tres componentes `Caja` de 100 × 100, cada una con un color que le paso por propiedades.
+
+### Cómo lo he hecho
+1. Hice el componente `src/components/Caja.tsx` con dos props: `nombre` y `bg`, que es el color y por defecto es verde. Con `style={[styles.caja, { backgroundColor: bg }]}` junto el estilo base con el color que le llega.
+2. En `src/screens/PrincipalScreen.tsx` puse el título en amarillo y el escenario gris claro con `flex: 1`. Dentro van las tres cajas:
+
+```tsx
+<View style={styles.escenario}>
+  <Caja nombre="1" bg="rosybrown" />
+  <Caja nombre="2" bg="cornflowerblue" />
+  <Caja nombre="3" bg="green" />
+</View>
+```
+
+3. Las cajas salen una debajo de otra porque en React Native la columna es la dirección que viene por defecto.
+4. Aquí también monté el índice de prácticas (lo explico arriba, en «Cómo está organizado el proyecto»).
+
+### Captura
+![Práctica 4: tres cajas dentro del escenario](capturas/practica-04-tres-cajas.jpg)
+
+### Problemas que tuve
+- Al cambiar las pestañas por el `Stack`, Expo Go seguía enseñando la versión vieja con las pestañas. Se arregló recargando la app.
 
 ### Estado
 Terminada.
