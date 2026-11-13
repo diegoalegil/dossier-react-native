@@ -35,6 +35,10 @@ export default function CalculadoraScreen() {
   const [esperando, setEsperando] = useState(false);
 
   const pulsarNumero = (digito: string) => {
+    if (pantalla === 'Error') {
+      setAnterior(null);
+      setOperacion(null);
+    }
     if (esperando || pantalla === 'Error') {
       setPantalla(digito === '.' ? '0.' : digito);
       setEsperando(false);
@@ -46,7 +50,11 @@ export default function CalculadoraScreen() {
     if (pantalla.replace('-', '').replace('.', '').length >= 9) {
       return;
     }
-    setPantalla(pantalla === '0' && digito !== '.' ? digito : pantalla + digito);
+    if (digito !== '.' && (pantalla === '0' || pantalla === '-0')) {
+      setPantalla(pantalla === '-0' ? `-${digito}` : digito);
+      return;
+    }
+    setPantalla(pantalla + digito);
   };
 
   const pulsarOperacion = (nueva: Operacion) => {
@@ -56,6 +64,13 @@ export default function CalculadoraScreen() {
     }
     if (operacion !== null && anterior !== null && !esperando) {
       const resultado = calcular(anterior, actual, operacion);
+      if (!Number.isFinite(resultado)) {
+        setPantalla('Error');
+        setAnterior(null);
+        setOperacion(null);
+        setEsperando(true);
+        return;
+      }
       setPantalla(formatear(resultado));
       setAnterior(resultado);
     } else {
@@ -84,7 +99,12 @@ export default function CalculadoraScreen() {
   };
 
   const cambiarSigno = () => {
-    if (pantalla === '0' || pantalla === 'Error') {
+    if (pantalla === 'Error') {
+      return;
+    }
+    if (esperando && operacion !== null) {
+      setPantalla('-0');
+      setEsperando(false);
       return;
     }
     setPantalla(pantalla.startsWith('-') ? pantalla.slice(1) : `-${pantalla}`);
@@ -94,6 +114,7 @@ export default function CalculadoraScreen() {
     const actual = parseFloat(pantalla);
     if (!Number.isNaN(actual)) {
       setPantalla(formatear(actual / 100));
+      setEsperando(true);
     }
   };
 

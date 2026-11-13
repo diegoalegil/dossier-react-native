@@ -10,8 +10,8 @@ type Props = {
 
 export default function TeclaCalculadora({ texto, color = '#333333', colorTexto = 'white', ancha = false, onPress }: Props) {
   return (
-    <TouchableOpacity style={[styles.tecla, { backgroundColor: color }, ancha && styles.ancha]} onPress={onPress}>
-      <Text style={[styles.texto, { color: colorTexto }]}>{texto}</Text>
+    <TouchableOpacity style={[styles.tecla, ancha ? styles.ancha : styles.normal, { backgroundColor: color }]} onPress={onPress}>
+      <Text style={[styles.texto, { color: colorTexto }, ancha && styles.textoAncho]}>{texto}</Text>
     </TouchableOpacity>
   );
 }
@@ -19,18 +19,22 @@ export default function TeclaCalculadora({ texto, color = '#333333', colorTexto 
 const styles = StyleSheet.create({
   tecla: {
     alignItems: 'center',
-    aspectRatio: 1,
     borderRadius: 100,
-    flex: 1,
     justifyContent: 'center',
+  },
+  normal: {
+    aspectRatio: 1,
+    flex: 1,
   },
   ancha: {
     alignItems: 'flex-start',
-    aspectRatio: 2.1,
-    flex: 2,
-    paddingLeft: 30,
+    flexBasis: 12,
+    flexGrow: 2,
   },
   texto: {
     fontSize: 30,
+  },
+  textoAncho: {
+    marginLeft: 30,
   },
 });

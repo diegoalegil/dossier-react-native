@@ -19,7 +19,7 @@ Con el emulador de Android Studio abierto, pulso la tecla `a` y se abre la app e
 
 Desde la práctica 4 la app abre con un índice que tiene un enlace a cada práctica, así no se pierde ninguna:
 
-- `src/app/`: las rutas de Expo Router. Cada práctica tiene su archivo (`practica01.tsx`, `practica02.tsx`...) que solo exporta su pantalla, por ejemplo `export { default } from '../screens/HolaMundoScreen';`. El `index.tsx` es el índice con los `Link`.
+- `src/app/`: las rutas de Expo Router. Cada práctica tiene su archivo (`practica01.tsx`, `practica02.tsx`...) que solo exporta su pantalla, por ejemplo `export { default } from '../screens/HolaMundoScreen';`. La 2 y la 3 van juntas en `practica02.tsx`, porque la 3 es el mismo contador pasado a `InicioScreen`. El `index.tsx` es el índice con los `Link`.
 - `src/app/_layout.tsx`: cambié las pestañas que traía la plantilla por un `Stack`, con el título de cada práctica arriba y la flecha para volver al índice. También quité `explore.tsx`, que era de la plantilla.
 - `src/screens/`: el código de cada pantalla.
 - `src/components/`: los componentes que reutilizo.
@@ -163,7 +163,9 @@ export default function Index() {
 }
 ```
 
-Lo bueno es que `src/app/` es lo que Expo Router usa como rutas y en `src/screens/` está el código de verdad de cada pantalla.
+Así `src/app/` queda para las rutas de Expo Router y el código de cada pantalla va en `src/screens/`.
+
+Luego, en la práctica 4, el `index.tsx` pasó a ser el índice, y ahora esta pantalla se abre desde `practica02.tsx` (en el índice sale como «Prácticas 2 y 3»).
 
 ### Captura
 ![Práctica 3: el contador ya sale desde InicioScreen](capturas/practica-03-inicio-screen.jpg)
@@ -179,7 +181,7 @@ Terminada.
 ## Práctica 4. Tres cajas
 
 ### Qué hay que hacer
-Una pantalla `PrincipalScreen` con el texto «Contenedor Principal» y un escenario con `flex: 1` donde van tres componentes `Caja` de 100 × 100, cada una con un color que le paso por propiedades.
+Una pantalla `PrincipalScreen` con el texto «Contenedor Principal» y un escenario con `flex: 1` donde van tres componentes `Caja` de 100 × 100, cada uno con un color que le paso por propiedades.
 
 ### Cómo lo he hecho
 1. Hice el componente `src/components/Caja.tsx` con dos props: `nombre` y `bg`, que es el color y por defecto es verde. Con `style={[styles.caja, { backgroundColor: bg }]}` junto el estilo base con el color que le llega.
@@ -223,7 +225,7 @@ Al entrar, las tres tienen `flex: 1` y ocupan lo mismo:
 
 ![Práctica 5: las tres cajas con flex 1](capturas/practica-05-flex-inicio.jpg)
 
-Después de subir la caja 2 a `flex: 3` y bajar la 3 a `flex: 0`, la 2 se queda con casi todo el espacio y la 3 solo ocupa lo que mide su contenido:
+Después de subir la caja 2 a `flex: 3` y bajar la 3 a `flex: 0`, la 2 se queda con la mayor parte del espacio (unas tres veces lo de la 1) y la 3 solo ocupa lo que mide su contenido:
 
 ![Práctica 5: la caja 2 con flex 3 y la 3 con flex 0](capturas/practica-05-flex-cambiado.jpg)
 
@@ -254,6 +256,7 @@ const aumentar = () => {
 ```
 
 5. Los dos botones van redondeados (`borderRadius: 20`) y con borde blanco.
+6. La pantalla es `src/screens/TactilScreen.tsx`, con las tres cajas como en la 5.
 
 ### Capturas
 La alerta al pulsar `flex + 1` en la caja 2:
@@ -318,8 +321,8 @@ const verde = Math.max(0, Math.min(255, 230 - numero * 8));
 const azul = Math.min(255, 140 + (numero % 5) * 25);
 ```
 
-4. Otros dos estados guardan el `flexWrap` y el `flexDirection` y se los paso al escenario. El botón enseña el valor que hay puesto, como en la figura del dossier («wrap. Pulse para cambiar»).
-5. Los círculos los pinto con `map` y a cada uno le pongo `key={circulo.id}`, que React lo necesita.
+4. Otros dos estados guardan el `flexWrap` y el `flexDirection` y se los paso al escenario. Cada botón enseña el valor que tiene puesto, como en la figura del dossier («wrap. Pulse para cambiar»).
+5. Los círculos los pinto con `map` y a cada uno le pongo `key={circulo.id}`, porque React lo necesita.
 
 ### Capturas
 Con `wrap` y `row`, cuando no caben más en la fila bajan a la siguiente:
@@ -358,6 +361,7 @@ type Justify = (typeof valoresJustify)[number];
    - el logo pequeño de la web de React Native, con `{ uri: ... }`;
    - el logo de Expo de GitHub, también con `{ uri: ... }`.
 5. Encima del escenario se ve lo que hay puesto, por ejemplo `justifyContent: space-between · alignItems: flex-end`.
+6. La pantalla es `src/screens/AlineacionScreen.tsx`. El escenario tiene `flexDirection: 'column'` y `flexWrap: 'nowrap'`, como pide el dossier.
 
 ### Capturas
 Con `center` en los dos:
@@ -369,7 +373,7 @@ Escribiendo `space-between` y pulsando `flex-end`:
 ![Práctica 9: justifyContent space-between y alignItems flex-end](capturas/practica-09-space-between.jpg)
 
 ### Problemas que tuve
-- La tercera imagen al principio era una foto de picsum.photos, pero no cargaba porque la web no respondía. La cambié por el logo de Expo de GitHub, que sí carga. Por eso el dossier avisa de que las URL de fuera pueden fallar.
+- La tercera imagen al principio era una foto de picsum.photos, pero no cargaba porque la web no respondía. La cambié por el logo de Expo de GitHub, que sí carga. Es lo que avisa el dossier: las URL de fuera pueden fallar.
 - Al escribir en el campo, mientras pones el valor a medias (por ejemplo `space-`) sale el aviso rojo. Es normal: desaparece cuando el valor ya es válido.
 
 ### Estado
@@ -396,6 +400,7 @@ const imagenes = [
 2. La posición va en un estado y la imagen que se ve es `imagenes[indice]`.
 3. El botón `IMAGEN ALEATORIA` hace `setIndice(Math.floor(Math.random() * imagenes.length))`.
 4. Debajo de la imagen sale su nombre y la posición, por ejemplo «Icono de la app (3 de 5)».
+5. La pantalla es `src/screens/ImagenAleatoriaScreen.tsx`.
 
 ### Capturas
 ![Práctica 9.1: sale el icono de la app](capturas/practica-09-1-icono.jpg)
@@ -416,7 +421,7 @@ Terminada.
 Copiar la calculadora de la figura del dossier: la pantalla del resultado y las filas de teclas. Las teclas tienen que ser un componente reutilizable con `TouchableOpacity`, las filas con Flexbox y el resultado en un estado. Sin usar `eval`.
 
 ### Cómo lo he hecho
-1. `src/components/TeclaCalculadora.tsx`: cada tecla es un `TouchableOpacity` redondo (`aspectRatio: 1` y `borderRadius: 100`). Tiene props para el texto, el color, el color del texto y si es ancha, que es la del 0.
+1. `src/components/TeclaCalculadora.tsx`: cada tecla es un `TouchableOpacity` redondo (`aspectRatio: 1` y `borderRadius: 100`). Tiene props para el texto, el color, el color del texto y si es ancha, que es la del 0. El 0 no lleva `aspectRatio` (lo explico en los problemas).
 2. `src/screens/CalculadoraScreen.tsx`: cinco filas con `flexDirection: 'row'` y `gap`. Los colores son como en la figura: gris claro para AC, ± y %, naranja para las operaciones y gris oscuro para los números.
 3. Uso cuatro estados:
    - `pantalla`: lo que se ve;
@@ -442,22 +447,24 @@ const calcular = (a: number, b: number, operacion: Operacion) => {
 
 5. Si encadenas operaciones (por ejemplo `2 + 3 x 4 =`), va haciendo la cuenta sobre la marcha y da 20. Arriba, en pequeño, sale la operación pendiente (`125 /`).
 6. El resultado lleva `numberOfLines={1}` y `adjustsFontSizeToFit` para que los números largos quepan en una línea.
+7. Si pulsas ± justo después de una operación, el número que vas a escribir empieza en negativo (`-0`), como en la calculadora del móvil.
 
 ### Capturas
 Escribiendo `125 / 4`:
 
 ![Práctica 10: la calculadora con la operación pendiente](capturas/practica-10-operacion.jpg)
 
-Al pulsar `=`, con el componente `TeclaCalculadora` abierto en el editor:
+Al pulsar `=`, con la primera versión de `TeclaCalculadora` abierta en el editor:
 
 ![Práctica 10: el resultado 31.25](capturas/practica-10-resultado.jpg)
 
 ### Problemas que tuve
-- Los decimales en JavaScript no son exactos: `0.1 + 0.2` da `0.30000000000000004`. Para que salga `0.3` redondeo el resultado con `toPrecision(12)` antes de enseñarlo.
-- En JavaScript dividir entre 0 da `Infinity`, así que en ese caso hago que salga «Error», y al pulsar otro número se empieza de nuevo.
-- El 0 es el doble de ancho que las demás teclas. Le puse `flex: 2` y `aspectRatio: 2.1` para que quede a la misma altura que las otras.
+- Los decimales en JavaScript no son exactos: `0.1 + 0.2` da `0.30000000000000004`. Para que salga `0.3` redondeo el resultado con `toPrecision(12)` y le quito los ceros del final con `parseFloat`.
+- En JavaScript dividir entre 0 da `Infinity`. Si el segundo número es 0 devuelvo `NaN`, y `formatear` enseña «Error» cuando el número no es finito. Al pulsar otro número se empieza de nuevo.
+- Al principio, si después del Error pulsabas otra operación (`5 / 0 +`), se quedaba guardado el `NaN` y todo lo siguiente salía Error. Ahora, cuando sale Error, borro también el número anterior y la operación.
+- Al 0 primero le puse `flex: 2` y `aspectRatio: 2.1` (es lo que se ve en la segunda captura), pero quedaba un poco más alto que las demás teclas y el `.` y el `=` salían más pequeños. Lo cambié: el 0 ya no lleva `aspectRatio`, sino `flexGrow: 2` y `flexBasis: 12`, que es lo que mide el `gap`. Así ocupa dos teclas más el hueco de en medio y se estira a la altura de la fila. El hueco de la izquierda del 0 lo puse con `marginLeft` en el texto, porque con `paddingLeft` en la tecla el `.` y el `=` seguían saliendo más pequeños.
 
-Lo probé con `0.1 + 0.2` (sale 0.3), `5 / 0` (sale Error), `2 + 3 x 4` (sale 20), `9 ± x 2` (sale -18) y `50 %` (sale 0.5).
+Lo probé con `0.1 + 0.2` (sale 0.3), `5 / 0` (sale Error), `5 / 0 + 3 =` (sale Error y luego 3), `2 + 3 x 4` (sale 20), `9 ± x 2` (sale -18), `9 x ± 4` (sale -36) y `50 %` (sale 0.5).
 
 ### Estado
 Terminada.
