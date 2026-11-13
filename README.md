@@ -21,6 +21,7 @@ Con el emulador de Android Studio abierto, pulso la tecla `a` y se abre la app e
 |---|---|
 | [1. Hola mundo](#práctica-1-hola-mundo) | Terminada |
 | [2. Contador con dos botones](#práctica-2-contador-con-dos-botones) | Terminada |
+| [3. InicioScreen y estilos separados](#práctica-3-inicioscreen-y-estilos-separados) | Terminada |
 
 ---
 
@@ -118,6 +119,38 @@ El código del Hola mundo está en el primer commit. En la práctica 3 lo guardo
 
 ### Problemas que tuve
 - Ninguno con el código. Lo único fue preparar el emulador en el portátil: le faltaba la imagen de Android y la tuve que volver a descargar.
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 3. InicioScreen y estilos separados
+
+### Qué hay que hacer
+Pasar el contador de la práctica 2 a su propia pantalla, `src/screens/InicioScreen.tsx`, y que `src/app/index.tsx` solo la importe y la muestre. Los estilos con `StyleSheet.create()`.
+
+### Cómo lo he hecho
+1. Creé la carpeta `src/screens/`.
+2. Moví el código del contador a `src/screens/InicioScreen.tsx` y cambié el nombre de la función a `InicioScreen`.
+3. Recuperé el Hola mundo de la práctica 1 y lo guardé en `src/screens/HolaMundoScreen.tsx`, para no perderlo.
+4. Dejé `src/app/index.tsx` así:
+
+```tsx
+import InicioScreen from '../screens/InicioScreen';
+
+export default function Index() {
+  return <InicioScreen />;
+}
+```
+
+Lo bueno es que `src/app/` es lo que Expo Router usa como rutas y en `src/screens/` está el código de verdad de cada pantalla.
+
+### Captura
+![Práctica 3: el contador ya sale desde InicioScreen](capturas/practica-03-inicio-screen.jpg)
+
+### Problemas que tuve
+- Ninguno. Comprobé que no había errores al importar y que el contador seguía sumando y restando igual.
 
 ### Estado
 Terminada.
