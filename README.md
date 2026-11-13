@@ -36,6 +36,7 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [5. Modificar flex dinámicamente](#práctica-5-modificar-flex-dinámicamente) | Terminada |
 | [6. Sustituir los botones](#práctica-6-sustituir-los-botones) | Terminada |
 | [7. Nombre y estilos personalizados](#práctica-7-nombre-y-estilos-personalizados) | Terminada |
+| [8. Círculos dinámicos](#práctica-8-círculos-dinámicos) | Terminada |
 
 ---
 
@@ -291,6 +292,42 @@ type Props = { nombre: string; bg?: string; style?: StyleProp<ViewStyle> };
 
 ### Problemas que tuve
 - Ninguno.
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 8. Círculos dinámicos
+
+### Qué hay que hacer
+Empezar con el escenario vacío. Un botón añade círculos de un color que va cambiando, y otros dos cambian entre `wrap/nowrap` y `row/column`. Los botones tienen que ser personalizados con `TouchableOpacity` y el RGB no puede pasar de 255.
+
+### Cómo lo he hecho
+1. Hice un botón reutilizable, `src/components/BotonPersonalizado.tsx`: un `TouchableOpacity` con un título y un color que le paso por props.
+2. En `src/screens/CirculosScreen.tsx` guardo los círculos en un array de estado. Cada círculo tiene `id` y `color`.
+3. El color depende del número del círculo. Lo limito con `Math.min(255, ...)` y, en el verde, que va bajando, también con `Math.max(0, ...)`:
+
+```ts
+const rojo = Math.min(255, 120 + numero * 12);
+const verde = Math.max(0, Math.min(255, 230 - numero * 8));
+const azul = Math.min(255, 140 + (numero % 5) * 25);
+```
+
+4. Otros dos estados guardan el `flexWrap` y el `flexDirection` y se los paso al escenario. El botón enseña el valor que hay puesto, como en la figura del dossier («wrap. Pulse para cambiar»).
+5. Los círculos los pinto con `map` y a cada uno le pongo `key={circulo.id}`, que React lo necesita.
+
+### Capturas
+Con `wrap` y `row`, cuando no caben más en la fila bajan a la siguiente:
+
+![Práctica 8: diez círculos con wrap y row](capturas/practica-08-wrap-row.jpg)
+
+Con `nowrap` y `column` salen todos en una columna y los últimos se quedan fuera, porque no pueden saltar a otra columna:
+
+![Práctica 8: los círculos con nowrap y column](capturas/practica-08-nowrap-column.jpg)
+
+### Problemas que tuve
+- Ninguno. Al escenario le puse `overflow: 'hidden'` para que, con `nowrap`, los círculos que no caben se corten en el borde y no se salgan por encima de lo demás.
 
 ### Estado
 Terminada.

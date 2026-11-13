@@ -23,6 +23,9 @@ export default function Index() {
       <Link href="/practica07" style={styles.enlace}>
         Práctica 7. Nombres y estilos
       </Link>
+      <Link href="/practica08" style={styles.enlace}>
+        Práctica 8. Círculos dinámicos
+      </Link>
     </ScrollView>
   );
 }
