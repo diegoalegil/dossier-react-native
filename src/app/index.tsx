@@ -17,6 +17,12 @@ export default function Index() {
       <Link href="/practica05" style={styles.enlace}>
         Práctica 5. Flex dinámico
       </Link>
+      <Link href="/practica06" style={styles.enlace}>
+        Práctica 6. Botones Touchable
+      </Link>
+      <Link href="/practica07" style={styles.enlace}>
+        Práctica 7. Nombres y estilos
+      </Link>
     </ScrollView>
   );
 }

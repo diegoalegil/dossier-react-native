@@ -34,6 +34,8 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [3. InicioScreen y estilos separados](#práctica-3-inicioscreen-y-estilos-separados) | Terminada |
 | [4. Tres cajas](#práctica-4-tres-cajas) | Terminada |
 | [5. Modificar flex dinámicamente](#práctica-5-modificar-flex-dinámicamente) | Terminada |
+| [6. Sustituir los botones](#práctica-6-sustituir-los-botones) | Terminada |
+| [7. Nombre y estilos personalizados](#práctica-7-nombre-y-estilos-personalizados) | Terminada |
 
 ---
 
@@ -222,6 +224,73 @@ Después de subir la caja 2 a `flex: 3` y bajar la 3 a `flex: 0`, la 2 se queda 
 
 ### Problemas que tuve
 - Ninguno. Me fijé en que con `flex: 0` la caja no desaparece: se queda del tamaño del texto y los botones, así que se puede volver a subir.
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 6. Sustituir los botones
+
+### Qué hay que hacer
+Cambiar los botones de la práctica 5. El de `flex + 1` pasa a ser un `TouchableHighlight` que además saca una alerta, y el de `flex - 1` un `TouchableOpacity`. Los dos personalizados.
+
+### Cómo lo he hecho
+1. Copié la caja en `src/components/CajaTactil.tsx` (así la práctica 5 sigue igual) y cambié los `Button` por los dos componentes táctiles, cada uno con un `Text` dentro.
+2. El `TouchableOpacity` es rojo y baja el valor. Al pulsarlo se vuelve medio transparente.
+3. El `TouchableHighlight` es naranja y lleva `underlayColor="gold"`, que es el color que sale mientras lo tienes pulsado.
+4. La función `aumentar` saca la alerta y luego sube el valor:
+
+```tsx
+const aumentar = () => {
+  Alert.alert('flex + 1', `La caja ${nombre} pasa a flex ${valorFlex + 1}`);
+  setValorFlex(n => n + 1);
+};
+```
+
+5. Los dos botones van redondeados (`borderRadius: 20`) y con borde blanco.
+
+### Capturas
+La alerta al pulsar `flex + 1` en la caja 2:
+
+![Práctica 6: alerta del TouchableHighlight](capturas/practica-06-alerta.jpg)
+
+Después de cerrar la alerta y bajar la caja 1 a `flex: 0`:
+
+![Práctica 6: botones personalizados](capturas/practica-06-botones.jpg)
+
+### Problemas que tuve
+- Ninguno. La diferencia entre los dos se nota al pulsar: el Highlight cambia de color y el Opacity solo se aclara.
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 7. Nombre y estilos personalizados
+
+### Qué hay que hacer
+Que cada caja enseñe su nombre (Caja A, B y C) y acepte estilos que le llegan por propiedades. Al menos una con las esquinas redondeadas y otro borde.
+
+### Cómo lo he hecho
+1. Hice el componente `src/components/CajaPersonalizada.tsx` con una prop `style` de tipo `StyleProp<ViewStyle>`:
+
+```tsx
+type Props = { nombre: string; bg?: string; style?: StyleProp<ViewStyle> };
+```
+
+2. Dentro de la caja junto los estilos así: `style={[styles.porDefecto, { backgroundColor: bg, flex: valorFlex }, style]}`. El último es el que manda, así que lo que le paso desde fuera pisa al estilo por defecto.
+3. En `src/screens/CajasPersonalizadasScreen.tsx`:
+   - la Caja A va con el estilo por defecto;
+   - la B lleva `borderRadius: 20` y un borde azul marino de 7;
+   - la C lleva `borderRadius: 40` y un borde amarillo discontinuo (`borderStyle: 'dashed'`).
+4. Los botones son los de la práctica 6, así que siguen funcionando.
+
+### Captura
+![Práctica 7: Caja A, B y C con estilos distintos](capturas/practica-07-cajas-estilos.jpg)
+
+### Problemas que tuve
+- Ninguno.
 
 ### Estado
 Terminada.
