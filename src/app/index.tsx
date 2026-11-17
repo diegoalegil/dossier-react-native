@@ -38,6 +38,9 @@ export default function Index() {
       <Link href="/practica12" style={styles.enlace}>
         Práctica 12. Color aleatorio
       </Link>
+      <Link href="/practica13" style={styles.enlace}>
+        Práctica 13. Introducir el color
+      </Link>
     </ScrollView>
   );
 }

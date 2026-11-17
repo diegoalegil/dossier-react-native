@@ -43,7 +43,8 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [10. Calculadora](#práctica-10-calculadora) | Terminada |
 | [11. Hook personalizado para la calculadora](#práctica-11-hook-personalizado-para-la-calculadora) | Terminada |
 | [12. Color aleatorio con confirmación](#práctica-12-color-aleatorio-con-confirmación) | Terminada |
-| De la 13 a la 40 | Pendientes |
+| [13. Introducir el color](#práctica-13-introducir-el-color) | Terminada |
+| De la 14 a la 40 | Pendientes |
 
 ---
 
@@ -578,6 +579,55 @@ Después de pulsar «Aceptar»:
 
 ### Problemas que tuve
 - Ninguno con el código. En Android los botones de la alerta salen en mayúsculas (CANCELAR y ACEPTAR) aunque yo los escribí como «Cancelar» y «Aceptar»; es el estilo de Android.
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 13. Introducir el color
+
+### Qué hay que hacer
+Lo mismo que la 12, pero escribiendo el color en un diálogo. Como `Alert.prompt()` no funciona igual en Android, el diálogo se hace con un `Modal`, un `TextInput` y dos botones (Cancelar y Aceptar). Solo se cambia el fondo si el color es válido, y si cancelas no cambia nada.
+
+### Cómo lo he hecho
+1. Hice el componente `src/components/DialogoTexto.tsx`: un `Modal` transparente con el fondo oscurecido y una caja blanca con el título, el `TextInput`, un texto rojo para los errores y los dos botones. Todo le llega por props (`visible`, `titulo`, `valor`, `placeholder`, `error`, `onChangeText`, `onCancelar` y `onAceptar`), así me sirve para pedir cualquier texto.
+2. La pantalla es `src/screens/IntroducirColorScreen.tsx`. Tiene cuatro estados: `fondo`, `visible` (si el diálogo está abierto), `colorEscrito` y `error`.
+3. Para saber si el color es válido uso `processColor` de React Native, que devuelve `undefined` cuando no entiende el color:
+
+```tsx
+const aceptar = () => {
+  const color = colorEscrito.trim().toLowerCase();
+  if (color === '') {
+    setError('Escribe un color');
+    return;
+  }
+  const procesado = processColor(color);
+  if (procesado === null || procesado === undefined) {
+    setError(`«${colorEscrito.trim()}» no es un color válido`);
+    return;
+  }
+  setFondo(color);
+  setVisible(false);
+};
+```
+
+4. Valen los nombres de colores en inglés (`tomato`) y en hexadecimal (`#ffcc00`). Lo paso a minúsculas, así `Tomato` también funciona.
+5. «Cancelar» solo cierra el diálogo (`setVisible(false)`), y el botón de atrás de Android también, por el `onRequestClose` del `Modal`.
+
+### Capturas
+Escribiendo un color que no existe:
+
+![Práctica 13: el diálogo con el aviso de color no válido](capturas/practica-13-dialogo.jpg)
+
+Con `#ffcc00` aceptado:
+
+![Práctica 13: el fondo con el color escrito](capturas/practica-13-cambiado.jpg)
+
+### Problemas que tuve
+- Al principio el aviso de error se quedaba puesto mientras escribías otra cosa. Lo arreglé con una función `escribir` que guarda el texto y borra el error a la vez.
+- `azul` no vale: los nombres de los colores tienen que ir en inglés.
+- Con un color oscuro (por ejemplo `navy`) el texto negro de «Color del fondo» no se leía, así que le puse a ese texto un fondo blanco con las esquinas redondeadas.
 
 ### Estado
 Terminada.
