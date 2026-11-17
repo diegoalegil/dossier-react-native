@@ -4,11 +4,9 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import BotonPersonalizado from '../components/BotonPersonalizado';
 
 const imagenes = [
-  { nombre: 'Logo de React', source: require('../../assets/images/react-logo.png') },
-  { nombre: 'Logo de Expo', source: require('../../assets/images/expo-logo.png') },
-  { nombre: 'Icono de la app', source: require('../../assets/images/icon.png') },
-  { nombre: 'Logo con brillo', source: require('../../assets/images/logo-glow.png') },
-  { nombre: 'Icono de Android', source: require('../../assets/images/android-icon-foreground.png') },
+  { nombre: 'Celebración en el córner', source: require('../../assets/images/celebracion-corner.jpg') },
+  { nombre: 'Rayo McQueen', source: require('../../assets/images/rayo-mcqueen.jpg') },
+  { nombre: 'Uniforme militar', source: require('../../assets/images/uniforme-militar.jpg') },
 ];
 
 export default function ImagenAleatoriaScreen() {
