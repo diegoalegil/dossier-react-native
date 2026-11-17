@@ -393,25 +393,25 @@ Terminada.
 Con una colección de imágenes locales, un botón que elige una al azar con `Math.floor(Math.random() * imagenes.length)` y guarda la posición con `useState`.
 
 ### Cómo lo he hecho
-1. Hice una lista con tres imágenes que elegí yo y guardé en `assets/images`: una celebración en el córner, Rayo McQueen y un uniforme militar. Cada `require` va escrito entero, porque la ruta de `require` no se puede montar con una variable.
+1. Hice una lista con tres imágenes que elegí yo y guardé en `assets/images`: Lamine Yamal, Ka-Chow! y Kilian Dictad*r. Cada `require` va escrito entero, porque la ruta de `require` no se puede montar con una variable.
 
 ```tsx
 const imagenes = [
-  { nombre: 'Celebración en el córner', source: require('../../assets/images/celebracion-corner.jpg') },
-  { nombre: 'Rayo McQueen', source: require('../../assets/images/rayo-mcqueen.jpg') },
-  { nombre: 'Uniforme militar', source: require('../../assets/images/uniforme-militar.jpg') },
+  { nombre: 'Lamine Yamal', source: require('../../assets/images/celebracion-corner.jpg') },
+  { nombre: 'Ka-Chow!', source: require('../../assets/images/rayo-mcqueen.jpg') },
+  { nombre: 'Kilian Dictad*r', source: require('../../assets/images/uniforme-militar.jpg') },
 ];
 ```
 
 2. La posición va en un estado y la imagen que se ve es `imagenes[indice]`.
 3. El botón `IMAGEN ALEATORIA` hace `setIndice(Math.floor(Math.random() * imagenes.length))`.
-4. Debajo de la imagen sale su nombre y la posición, por ejemplo «Rayo McQueen (2 de 3)».
+4. Debajo de la imagen sale su nombre y la posición, por ejemplo «Ka-Chow! (2 de 3)».
 5. La pantalla es `src/screens/ImagenAleatoriaScreen.tsx`.
 
 ### Capturas
-![Práctica 9.1: sale la celebración en el córner](capturas/practica-09-1-corner.jpg)
+![Práctica 9.1: sale Lamine Yamal](capturas/practica-09-1-corner.jpg)
 
-![Práctica 9.1: al volver a pulsar sale Rayo McQueen](capturas/practica-09-1-mcqueen.jpg)
+![Práctica 9.1: al volver a pulsar sale Ka-Chow!](capturas/practica-09-1-mcqueen.jpg)
 
 ### Problemas que tuve
 - Al principio puse cinco imágenes que venían con la plantilla de Expo, y después las cambié por tres que elegí yo.

@@ -4,9 +4,9 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import BotonPersonalizado from '../components/BotonPersonalizado';
 
 const imagenes = [
-  { nombre: 'Celebración en el córner', source: require('../../assets/images/celebracion-corner.jpg') },
-  { nombre: 'Rayo McQueen', source: require('../../assets/images/rayo-mcqueen.jpg') },
-  { nombre: 'Uniforme militar', source: require('../../assets/images/uniforme-militar.jpg') },
+  { nombre: 'Lamine Yamal', source: require('../../assets/images/celebracion-corner.jpg') },
+  { nombre: 'Ka-Chow!', source: require('../../assets/images/rayo-mcqueen.jpg') },
+  { nombre: 'Kilian Dictad*r', source: require('../../assets/images/uniforme-militar.jpg') },
 ];
 
 export default function ImagenAleatoriaScreen() {
