@@ -33,7 +33,7 @@ export default function Index() {
         Práctica 9.1. Imagen aleatoria
       </Link>
       <Link href="/practica10" style={styles.enlace}>
-        Práctica 10. Calculadora
+        Prácticas 10 y 11. Calculadora
       </Link>
     </ScrollView>
   );

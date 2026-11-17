@@ -19,10 +19,11 @@ Con el emulador de Android Studio abierto, pulso la tecla `a` y se abre la app e
 
 Desde la práctica 4 la app abre con un índice que tiene un enlace a cada práctica, así no se pierde ninguna:
 
-- `src/app/`: las rutas de Expo Router. Cada práctica tiene su archivo (`practica01.tsx`, `practica02.tsx`...) que solo exporta su pantalla, por ejemplo `export { default } from '../screens/HolaMundoScreen';`. La 2 y la 3 van juntas en `practica02.tsx`, porque la 3 es el mismo contador pasado a `InicioScreen`. El `index.tsx` es el índice con los `Link`.
+- `src/app/`: las rutas de Expo Router. Cada práctica tiene su archivo (`practica01.tsx`, `practica02.tsx`...) que solo exporta su pantalla, por ejemplo `export { default } from '../screens/HolaMundoScreen';`. La 2 y la 3 van juntas en `practica02.tsx`, porque la 3 es el mismo contador pasado a `InicioScreen`, y la 10 y la 11 en `practica10.tsx`, porque la 11 es la misma calculadora con un hook. El `index.tsx` es el índice con los `Link`.
 - `src/app/_layout.tsx`: cambié las pestañas que traía la plantilla por un `Stack`, con el título de cada práctica arriba y la flecha para volver al índice. También quité `explore.tsx`, que era de la plantilla.
 - `src/screens/`: el código de cada pantalla.
 - `src/components/`: los componentes que reutilizo.
+- `src/hooks/`: mis hooks, como `useCalculadora.ts`. Los demás archivos de esa carpeta venían con la plantilla.
 - `capturas/`: las capturas de este README.
 
 ## Prácticas
@@ -40,7 +41,8 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [9. Distribución, alineación e imágenes](#práctica-9-distribución-alineación-e-imágenes) | Terminada |
 | [9.1. Imagen aleatoria](#práctica-91-imagen-aleatoria) | Terminada |
 | [10. Calculadora](#práctica-10-calculadora) | Terminada |
-| De la 11 a la 40 | Pendientes |
+| [11. Hook personalizado para la calculadora](#práctica-11-hook-personalizado-para-la-calculadora) | Terminada |
+| De la 12 a la 40 | Pendientes |
 
 ---
 
@@ -465,6 +467,76 @@ Al pulsar `=`, con la primera versión de `TeclaCalculadora` abierta en el edito
 - Al 0 primero le puse `flex: 2` y `aspectRatio: 2.1` (es lo que se ve en la segunda captura), pero quedaba un poco más alto que las demás teclas y el `.` y el `=` salían más pequeños. Lo cambié: el 0 ya no lleva `aspectRatio`, sino `flexGrow: 2` y `flexBasis: 12`, que es lo que mide el `gap`. Así ocupa dos teclas más el hueco de en medio y se estira a la altura de la fila. El hueco de la izquierda del 0 lo puse con `marginLeft` en el texto, porque con `paddingLeft` en la tecla el `.` y el `=` seguían saliendo más pequeños.
 
 Lo probé con `0.1 + 0.2` (sale 0.3), `5 / 0` (sale Error), `5 / 0 + 3 =` (sale Error y luego 3), `2 + 3 x 4` (sale 20), `9 ± x 2` (sale -18), `9 x ± 4` (sale -36) y `50 %` (sale 0.5).
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 11. Hook personalizado para la calculadora
+
+### Qué hay que hacer
+Sacar de la calculadora los estados y las funciones que no son JSX a un hook, `src/hooks/useCalculadora.ts`. La pantalla importa el hook y usa lo que devuelve, y la calculadora tiene que seguir funcionando igual.
+
+### Cómo lo he hecho
+1. Creé `src/hooks/useCalculadora.ts` y pasé ahí los cuatro estados (`pantalla`, `anterior`, `operacion` y `esperando`) y las funciones de las teclas (`pulsarNumero`, `pulsarOperacion`, `pulsarIgual`, `limpiar`, `cambiarSigno` y `porcentaje`). También moví `calcular` y `formatear`.
+2. El hook es una función que empieza por `use` y devuelve un objeto con lo que necesita la pantalla:
+
+```ts
+export default function useCalculadora() {
+  const [pantalla, setPantalla] = useState('0');
+  const [anterior, setAnterior] = useState<number | null>(null);
+  const [operacion, setOperacion] = useState<Operacion | null>(null);
+  const [esperando, setEsperando] = useState(false);
+
+  ...
+
+  const operacionPendiente = operacion !== null && anterior !== null ? `${formatear(anterior)} ${operacion}` : ' ';
+
+  return {
+    cambiarSigno,
+    limpiar,
+    operacionPendiente,
+    pantalla,
+    porcentaje,
+    pulsarIgual,
+    pulsarNumero,
+    pulsarOperacion,
+  };
+}
+```
+
+3. `esperando`, `anterior` y `operacion` no los devuelvo, porque solo los usan las funciones de dentro del hook. En su lugar devuelvo `operacionPendiente`, el texto pequeño de arriba (por ejemplo `125 /`), que el hook ya prepara con `formatear`.
+4. En `src/screens/CalculadoraScreen.tsx` ya solo quedan el JSX, los colores y los estilos. Arriba saco lo que necesito con desestructuración:
+
+```tsx
+const {
+  cambiarSigno,
+  limpiar,
+  operacionPendiente,
+  pantalla,
+  porcentaje,
+  pulsarIgual,
+  pulsarNumero,
+  pulsarOperacion,
+} = useCalculadora();
+```
+
+5. `calcular` y `formatear` se quedan dentro del archivo del hook y no los exporto, así la pantalla solo usa lo que devuelve `useCalculadora`. Arriba pone `<Text style={styles.operacion}>{operacionPendiente}</Text>`.
+6. Como es la misma calculadora, la 10 y la 11 van juntas en `practica10.tsx`, y en el índice sale como «Prácticas 10 y 11».
+
+### Capturas
+El hook abierto en el editor, con la calculadora funcionando igual que antes:
+
+![Práctica 11: el hook useCalculadora y la calculadora funcionando](capturas/practica-11-hook.jpg)
+
+La pantalla, que ya solo tiene el JSX:
+
+![Práctica 11: CalculadoraScreen usando el hook](capturas/practica-11-pantalla.jpg)
+
+### Problemas que tuve
+- Al principio la pantalla importaba `formatear` aparte para escribir la operación pendiente, pero el dossier pide que la pantalla use lo que devuelve el hook. Lo cambié para que el hook devuelva ese texto ya hecho (`operacionPendiente`).
+- Repetí las pruebas de la práctica 10 (`0.1 + 0.2`, `5 / 0 + 3 =`, `2 + 3 x 4`, `9 x ± 4`, `50 %` y `125 / 4`) y salen los mismos resultados.
 
 ### Estado
 Terminada.
