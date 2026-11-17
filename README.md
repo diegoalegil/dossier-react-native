@@ -45,7 +45,8 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [12. Color aleatorio con confirmación](#práctica-12-color-aleatorio-con-confirmación) | Terminada |
 | [13. Introducir el color](#práctica-13-introducir-el-color) | Terminada |
 | [14. Borde activado por Switch](#práctica-14-borde-activado-por-switch) | Terminada |
-| De la 15 a la 40 | Pendientes |
+| [15. Completar el formulario](#práctica-15-completar-el-formulario) | Terminada |
+| De la 16 a la 40 | Pendientes |
 
 ---
 
@@ -669,6 +670,55 @@ Encendido, con el borde rojo:
 
 ### Problemas que tuve
 - La pantalla no tenía color de fondo y, con el móvil en modo oscuro, el texto negro no se veía. Le puse `backgroundColor: 'white'` como en las demás prácticas.
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 15. Completar el formulario
+
+### Qué hay que hacer
+Hacer el formulario de persona del ejemplo (nombre, edad y jubilado) y añadirle el `Switch` de `casado`. Los cuatro campos tienen que actualizar el estado y salir en un resumen al final.
+
+### Cómo lo he hecho
+1. La pantalla es `src/screens/FormularioPersonaScreen.tsx`. Los datos van todos en un estado con su tipo. La edad la guardo como texto, porque el `TextInput` siempre devuelve texto, y la paso a número al validar:
+
+```tsx
+type DatosPersona = {
+  nombre: string;
+  edad: string;
+  casado: boolean;
+  jubilado: boolean;
+};
+```
+
+2. Para no hacer una función por campo uso `cambiarCampo`, como en el dossier. Con `K extends keyof DatosPersona` solo deja poner campos que existen, y el valor tiene que ser del tipo de ese campo:
+
+```tsx
+function cambiarCampo<K extends keyof DatosPersona>(campo: K, valor: DatosPersona[K]) {
+  setDatos(actual => ({ ...actual, [campo]: valor }));
+  setResumen(null);
+}
+```
+
+3. Los dos `TextInput` y los dos `Switch` llaman a `cambiarCampo`, por ejemplo `onValueChange={valor => cambiarCampo('casado', valor)}`. El de la edad lleva `keyboardType="numeric"`.
+4. Al pulsar «Enviar» compruebo que el nombre no esté vacío y que la edad sea un número entero entre 0 y 130. Para la edad uso una expresión regular, `/^\d+$/`, que solo deja pasar dígitos, y luego miro que no pase de 130. Si algo falla sale una alerta; si está bien, guardo los datos en otro estado, `resumen`, y salen abajo en una caja: nombre, edad, casado (Sí/No) y jubilado (Sí/No).
+5. Si cambias algún campo después de enviar, el resumen se quita hasta que vuelvas a enviar, para que no enseñe datos viejos.
+
+### Capturas
+La alerta cuando la edad no es válida (`25.5`):
+
+![Práctica 15: alerta de edad no válida](capturas/practica-15-error.jpg)
+
+El formulario enviado, con el resumen de los cuatro campos:
+
+![Práctica 15: formulario con el resumen](capturas/practica-15-resumen.jpg)
+
+### Problemas que tuve
+- Con `keyboardType="numeric"` el teclado deja escribir decimales y el signo menos, así que hay que validar igualmente.
+- Al principio lo comprobaba con `Number.isInteger(Number(datos.edad))`, pero `Number('25.')` da 25 y la daba por buena, y `Number('')` da 0. Lo cambié por la expresión regular, que solo acepta dígitos.
+- Las etiquetas salían en negro y, con el móvil en modo oscuro, el fondo de la pantalla se ponía casi negro y no se leían. Le puse fondo propio al `ScrollView`, como en las otras prácticas.
 
 ### Estado
 Terminada.
