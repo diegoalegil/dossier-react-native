@@ -44,7 +44,8 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [11. Hook personalizado para la calculadora](#práctica-11-hook-personalizado-para-la-calculadora) | Terminada |
 | [12. Color aleatorio con confirmación](#práctica-12-color-aleatorio-con-confirmación) | Terminada |
 | [13. Introducir el color](#práctica-13-introducir-el-color) | Terminada |
-| De la 14 a la 40 | Pendientes |
+| [14. Borde activado por Switch](#práctica-14-borde-activado-por-switch) | Terminada |
+| De la 15 a la 40 | Pendientes |
 
 ---
 
@@ -628,6 +629,46 @@ Con `#ffcc00` aceptado:
 - Al principio el aviso de error se quedaba puesto mientras escribías otra cosa. Lo arreglé con una función `escribir` que guarda el texto y borra el error a la vez.
 - `azul` no vale: los nombres de los colores tienen que ir en inglés.
 - Con un color oscuro (por ejemplo `navy`) el texto negro de «Color del fondo» no se leía, así que le puse a ese texto un fondo blanco con las esquinas redondeadas.
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 14. Borde activado por Switch
+
+### Qué hay que hacer
+Copiar el `Switch` de referencia: el indicador marrón cuando está apagado y naranja cuando está encendido. Al encenderlo sale un borde rojo alrededor de la pantalla y al apagarlo se quita.
+
+### Cómo lo he hecho
+1. La pantalla es `src/screens/SwitchBordeScreen.tsx`, con un estado `activo` que empieza en `false`.
+2. El `Switch` va conectado con `value` y `onValueChange`, y el color del indicador cambia con `thumbColor`:
+
+```tsx
+<Switch
+  style={styles.switch}
+  value={activo}
+  onValueChange={setActivo}
+  thumbColor={activo ? 'orange' : 'brown'}
+  trackColor={{ false: 'tan', true: 'moccasin' }}
+/>
+```
+
+3. Con `trackColor` le puse a la barra colores claros que pegan con el marrón y el naranja.
+4. El borde va en un estilo aparte que solo se añade si `activo` es `true`: `style={[styles.pantalla, activo && styles.borde]}`, con `borderColor: 'red'` y `borderWidth: 10`.
+5. Arriba pone «Borde activado» o «Borde desactivado», y el `Switch` lo agrandé con `transform: [{ scale: 1.5 }]` para que se vea mejor.
+
+### Capturas
+Apagado, sin borde:
+
+![Práctica 14: Switch apagado con el indicador marrón](capturas/practica-14-desactivado.jpg)
+
+Encendido, con el borde rojo:
+
+![Práctica 14: Switch encendido con el indicador naranja y el borde rojo](capturas/practica-14-activado.jpg)
+
+### Problemas que tuve
+- La pantalla no tenía color de fondo y, con el móvil en modo oscuro, el texto negro no se veía. Le puse `backgroundColor: 'white'` como en las demás prácticas.
 
 ### Estado
 Terminada.

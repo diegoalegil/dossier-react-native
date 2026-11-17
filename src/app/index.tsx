@@ -41,6 +41,9 @@ export default function Index() {
       <Link href="/practica13" style={styles.enlace}>
         Práctica 13. Introducir el color
       </Link>
+      <Link href="/practica14" style={styles.enlace}>
+        Práctica 14. Borde con Switch
+      </Link>
     </ScrollView>
   );
 }
