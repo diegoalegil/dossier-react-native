@@ -42,7 +42,8 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [9.1. Imagen aleatoria](#práctica-91-imagen-aleatoria) | Terminada |
 | [10. Calculadora](#práctica-10-calculadora) | Terminada |
 | [11. Hook personalizado para la calculadora](#práctica-11-hook-personalizado-para-la-calculadora) | Terminada |
-| De la 12 a la 40 | Pendientes |
+| [12. Color aleatorio con confirmación](#práctica-12-color-aleatorio-con-confirmación) | Terminada |
+| De la 13 a la 40 | Pendientes |
 
 ---
 
@@ -537,6 +538,46 @@ La pantalla, que ya solo tiene el JSX:
 ### Problemas que tuve
 - Al principio la pantalla importaba `formatear` aparte para escribir la operación pendiente, pero el dossier pide que la pantalla use lo que devuelve el hook. Lo cambié para que el hook devuelva ese texto ya hecho (`operacionPendiente`).
 - Repetí las pruebas de la práctica 10 (`0.1 + 0.2`, `5 / 0 + 3 =`, `2 + 3 x 4`, `9 x ± 4`, `50 %` y `125 / 4`) y salen los mismos resultados.
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 12. Color aleatorio con confirmación
+
+### Qué hay que hacer
+Una pantalla con un botón «Cambiar de color». Al pulsarlo se elige un color al azar de una lista y sale una alerta diciendo cuál se propone. Si aceptas, cambia el fondo; si cancelas, se queda el que había.
+
+### Cómo lo he hecho
+1. La pantalla es `src/screens/ColorAleatorioScreen.tsx`. El color del fondo va en un estado, `fondo`, que empieza en `white`.
+2. Tengo una lista de colores (`lightblue`, `lightgreen`, `gold`, `orange`, `pink`, `plum`, `salmon` y `turquoise`). Antes de elegir quito el que ya está puesto, para que no te proponga el mismo:
+
+```tsx
+const cambiarColor = () => {
+  const otros = colores.filter(color => color !== fondo);
+  const propuesto = otros[Math.floor(Math.random() * otros.length)];
+  Alert.alert('Cambiar de color', `¿Quieres poner el fondo de color ${propuesto}?`, [
+    { text: 'Cancelar', style: 'cancel' },
+    { text: 'Aceptar', onPress: () => setFondo(propuesto) },
+  ]);
+};
+```
+
+3. Solo el botón «Aceptar» cambia el estado. «Cancelar» no tiene `onPress`, así que el fondo se queda igual.
+4. El botón es el `BotonPersonalizado` de la práctica 8, y encima sale escrito el color que hay puesto.
+
+### Capturas
+La alerta proponiendo un color:
+
+![Práctica 12: alerta con el color propuesto](capturas/practica-12-alerta.jpg)
+
+Después de pulsar «Aceptar»:
+
+![Práctica 12: el fondo ya cambiado](capturas/practica-12-cambiado.jpg)
+
+### Problemas que tuve
+- Ninguno con el código. En Android los botones de la alerta salen en mayúsculas (CANCELAR y ACEPTAR) aunque yo los escribí como «Cancelar» y «Aceptar»; es el estilo de Android.
 
 ### Estado
 Terminada.
