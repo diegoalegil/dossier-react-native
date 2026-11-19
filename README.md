@@ -25,6 +25,7 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 - `src/screens/`: el código de cada pantalla.
 - `src/components/`: los componentes que reutilizo.
 - `src/hooks/`: mis hooks, como `useCalculadora.ts`. Los demás archivos de esa carpeta venían con la plantilla.
+- `src/context/`: el contexto de la práctica 23.
 - `capturas/`: las capturas de este README.
 
 ## Prácticas
@@ -54,7 +55,8 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [20. Primer Stack](#práctica-20-primer-stack) | Terminada |
 | [21. Stack con tres pantallas](#práctica-21-stack-con-tres-pantallas) | Terminada |
 | [22. Personalizar la cabecera](#práctica-22-personalizar-la-cabecera) | Terminada |
-| De la 23 a la 40 | Pendientes |
+| [23. Lista de tareas](#práctica-23-lista-de-tareas) | Terminada |
+| De la 24 a la 40 | Pendientes |
 
 ---
 
@@ -887,6 +889,30 @@ Un Stack de dos pantallas con la cabecera de otro color, el título en blanco, c
 
 ### Problemas que tuve
 - Aunque no sale la flecha, con el botón de atrás de Android se sigue pudiendo volver.
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 23. Lista de tareas
+
+### Qué hay que hacer
+Una lista de tareas con `FlatList` y otra pantalla para crear o editar. Se pueden añadir, marcar como completadas, editar y eliminar, y las completadas salen tachadas y con otro icono. Las tareas se comparten con un Context.
+
+### Cómo lo he hecho
+- El contexto está en `src/context/TareasContext.tsx`, como en el ejemplo, y el `TareasProvider` envuelve al `Stack` en el `_layout.tsx`.
+- En la lista, cada tarea tiene un icono para marcarla, un lápiz para editar y una papelera para borrar.
+- Las completadas llevan `textDecorationLine: 'line-through'`.
+- En `editar.tsx`, si la tarea ya existe le cambio el texto, y si no, la añado con `Date.now()` como id.
+
+### Capturas
+![Práctica 23: la lista de tareas](capturas/practica-23-lista.jpg)
+
+![Práctica 23: creando una tarea](capturas/practica-23-editar.jpg)
+
+### Problemas que tuve
+- TypeScript decía que `/stack/p23/editar` no era una ruta válida hasta que Expo generó los tipos de las rutas nuevas.
 
 ### Estado
 Terminada.

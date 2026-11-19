@@ -68,6 +68,9 @@ export default function Index() {
       <Link href="/stack/p22" style={styles.enlace}>
         Práctica 22. Personalizar la cabecera
       </Link>
+      <Link href="/stack/p23" style={styles.enlace}>
+        Práctica 23. Lista de tareas
+      </Link>
     </ScrollView>
   );
 }
