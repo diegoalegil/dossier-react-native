@@ -47,7 +47,8 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [14. Borde activado por Switch](#práctica-14-borde-activado-por-switch) | Terminada |
 | [15. Completar el formulario](#práctica-15-completar-el-formulario) | Terminada |
 | [16. Lista de productos](#práctica-16-lista-de-productos) | Terminada |
-| De la 17 a la 40 | Pendientes |
+| [17. Tarjetas para calcular el IMC](#práctica-17-tarjetas-para-calcular-el-imc) | Terminada |
+| De la 18 a la 40 | Pendientes |
 
 ---
 
@@ -744,6 +745,29 @@ Cambiar la lista de personas del ejemplo por una lista de productos con nombre, 
 
 ### Problemas que tuve
 - Se me coló una «a» delante del primer `import` y salía «Failed to compile». La quité y ya funcionó.
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 17. Tarjetas para calcular el IMC
+
+### Qué hay que hacer
+Hacer un componente `CardPersona.tsx` con id, nombre, altura y peso que calcule el IMC. La pantalla tiene un botón «+» para añadir tarjetas y cada tarjeta tiene un botón para eliminarla.
+
+### Cómo lo he hecho
+- `CardPersona` recibe el `id` y la función `onEliminar` por props, y guarda el nombre, la altura y el peso en su estado.
+- El IMC es `kilos / (metros * metros)`, y solo lo calculo si los dos son mayores que 0 para no dividir entre 0.
+- En `TarjetasImcScreen` tengo un array de ids. El «+» añade un id nuevo y eliminar lo quita con `filter`.
+
+### Capturas
+![Práctica 17: dos tarjetas](capturas/practica-17-tarjetas.jpg)
+
+![Práctica 17: después de añadir y eliminar](capturas/practica-17-eliminar.jpg)
+
+### Problemas que tuve
+- Ninguno.
 
 ### Estado
 Terminada.

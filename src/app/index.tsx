@@ -50,6 +50,9 @@ export default function Index() {
       <Link href="/practica16" style={styles.enlace}>
         Práctica 16. Lista de productos
       </Link>
+      <Link href="/practica17" style={styles.enlace}>
+        Práctica 17. Tarjetas del IMC
+      </Link>
     </ScrollView>
   );
 }
