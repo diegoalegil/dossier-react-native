@@ -65,6 +65,9 @@ export default function Index() {
       <Link href="/stack/p21" style={styles.enlace}>
         Práctica 21. Stack con tres pantallas
       </Link>
+      <Link href="/stack/p22" style={styles.enlace}>
+        Práctica 22. Personalizar la cabecera
+      </Link>
     </ScrollView>
   );
 }

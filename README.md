@@ -53,7 +53,8 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [19. Insertar emoticonos en el texto](#práctica-19-insertar-emoticonos-en-el-texto) | Terminada |
 | [20. Primer Stack](#práctica-20-primer-stack) | Terminada |
 | [21. Stack con tres pantallas](#práctica-21-stack-con-tres-pantallas) | Terminada |
-| De la 22 a la 40 | Pendientes |
+| [22. Personalizar la cabecera](#práctica-22-personalizar-la-cabecera) | Terminada |
+| De la 23 a la 40 | Pendientes |
 
 ---
 
@@ -865,6 +866,27 @@ Un Stack con tres pantallas. Desde la primera se va a la segunda y a la tercera,
 
 ### Problemas que tuve
 - Ninguno.
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 22. Personalizar la cabecera
+
+### Qué hay que hacer
+Un Stack de dos pantallas con la cabecera de otro color, el título en blanco, centrado y con mi nombre, y sin el botón de volver.
+
+### Cómo lo he hecho
+- En `screenOptions` del `Stack` puse `title: 'Diego'`, `headerTitleAlign: 'center'`, `headerStyle` con el fondo azul, `headerTintColor: '#fff'` y `headerBackVisible: false`.
+
+### Capturas
+![Práctica 22: la cabecera con mi nombre](capturas/practica-22-cabecera.jpg)
+
+![Práctica 22: la segunda pantalla sin flecha](capturas/practica-22-segunda.jpg)
+
+### Problemas que tuve
+- Aunque no sale la flecha, con el botón de atrás de Android se sigue pudiendo volver.
 
 ### Estado
 Terminada.
