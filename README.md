@@ -46,7 +46,8 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [13. Introducir el color](#práctica-13-introducir-el-color) | Terminada |
 | [14. Borde activado por Switch](#práctica-14-borde-activado-por-switch) | Terminada |
 | [15. Completar el formulario](#práctica-15-completar-el-formulario) | Terminada |
-| De la 16 a la 40 | Pendientes |
+| [16. Lista de productos](#práctica-16-lista-de-productos) | Terminada |
+| De la 17 a la 40 | Pendientes |
 
 ---
 
@@ -720,6 +721,29 @@ El formulario enviado, con el resumen de los cuatro campos:
 - Con `keyboardType="numeric"` el teclado deja escribir decimales y el signo menos, así que hay que validar igualmente.
 - Al principio lo comprobaba con `Number.isInteger(Number(datos.edad))`, pero `Number('25.')` da 25 y la daba por buena, y `Number('')` da 0. Lo cambié por la expresión regular, que solo acepta dígitos.
 - Las etiquetas salían en negro y, con el móvil en modo oscuro, el fondo de la pantalla se ponía casi negro y no se leían. Le puse fondo propio al `ScrollView`, como en las otras prácticas.
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 16. Lista de productos
+
+### Qué hay que hacer
+Cambiar la lista de personas del ejemplo por una lista de productos con nombre, precio y stock. Sin separador, con los colores de fondo alternos usando `index` y la cabecera «Lista Productos» centrada y más grande.
+
+### Cómo lo he hecho
+- Los productos son cartas de FC 27 con su precio en monedas y su stock.
+- Usé una `FlatList` con `renderItem`, y el color lo cambio con `index % 2 === 0 ? 'white' : 'lightsteelblue'`.
+- La cabecera va en `ListHeaderComponent` con `fontSize: 30` y `textAlign: 'center'`.
+
+### Capturas
+![Práctica 16: la lista de productos](capturas/practica-16-lista.jpg)
+
+![Práctica 16: los estilos de la cabecera](capturas/practica-16-final.jpg)
+
+### Problemas que tuve
+- Se me coló una «a» delante del primer `import` y salía «Failed to compile». La quité y ya funcionó.
 
 ### Estado
 Terminada.
