@@ -52,7 +52,8 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [18. Diario de emociones](#práctica-18-diario-de-emociones) | Terminada |
 | [19. Insertar emoticonos en el texto](#práctica-19-insertar-emoticonos-en-el-texto) | Terminada |
 | [20. Primer Stack](#práctica-20-primer-stack) | Terminada |
-| De la 21 a la 40 | Pendientes |
+| [21. Stack con tres pantallas](#práctica-21-stack-con-tres-pantallas) | Terminada |
+| De la 22 a la 40 | Pendientes |
 
 ---
 
@@ -841,6 +842,29 @@ Hacer una HomeScreen que vaya a una segunda pantalla y se pueda volver, todo den
 
 ### Problemas que tuve
 - Salían dos cabeceras hasta que puse `headerShown: false`.
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 21. Stack con tres pantallas
+
+### Qué hay que hacer
+Un Stack con tres pantallas. Desde la primera se va a la segunda y a la tercera, y a la tercera se le manda un nombre de usuario que tiene que enseñar.
+
+### Cómo lo he hecho
+- Va en `src/app/stack/p21/` con `index.tsx`, `segunda.tsx` y `tercera.tsx`.
+- Mando el nombre con `router.push({ pathname: '/stack/p21/tercera', params: { userName } })`.
+- En la tercera lo recojo con `useLocalSearchParams`.
+
+### Capturas
+![Práctica 21: la primera pantalla](capturas/practica-21-primera.jpg)
+
+![Práctica 21: la tercera pantalla con el nombre](capturas/practica-21-tercera.jpg)
+
+### Problemas que tuve
+- Ninguno.
 
 ### Estado
 Terminada.
