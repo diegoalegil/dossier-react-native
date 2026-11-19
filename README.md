@@ -49,7 +49,8 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [16. Lista de productos](#práctica-16-lista-de-productos) | Terminada |
 | [17. Tarjetas para calcular el IMC](#práctica-17-tarjetas-para-calcular-el-imc) | Terminada |
 | [18. Diario de emociones](#práctica-18-diario-de-emociones) | Terminada |
-| De la 19 a la 40 | Pendientes |
+| [19. Insertar emoticonos en el texto](#práctica-19-insertar-emoticonos-en-el-texto) | Terminada |
+| De la 20 a la 40 | Pendientes |
 
 ---
 
@@ -793,6 +794,28 @@ Una pantalla con un `TextInput` y un botón que va guardando entradas de un diar
 
 ### Problemas que tuve
 - No salían los iconos hasta que instalé `@expo/vector-icons`.
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 19. Insertar emoticonos en el texto
+
+### Qué hay que hacer
+Poner varios iconos de emociones encima de un `TextInput` y que al pulsar uno se añada su secuencia (`:-)`, `:-(`...) al final del texto.
+
+### Cómo lo he hecho
+- Cada icono va dentro de un `TouchableOpacity` con `setTexto(actual => actual + ' :-)')`.
+- El `TextInput` está controlado con `value={texto}` y `onChangeText={setTexto}`.
+
+### Capturas
+![Práctica 19: los iconos y el texto](capturas/practica-19-iconos.jpg)
+
+![Práctica 19: más texto y más emociones](capturas/practica-19-texto.jpg)
+
+### Problemas que tuve
+- Ninguno.
 
 ### Estado
 Terminada.

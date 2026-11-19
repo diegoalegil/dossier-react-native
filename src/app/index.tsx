@@ -56,6 +56,9 @@ export default function Index() {
       <Link href="/practica18" style={styles.enlace}>
         Práctica 18. Diario de emociones
       </Link>
+      <Link href="/practica19" style={styles.enlace}>
+        Práctica 19. Insertar emoticonos
+      </Link>
     </ScrollView>
   );
 }
