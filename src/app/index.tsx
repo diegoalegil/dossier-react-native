@@ -53,6 +53,9 @@ export default function Index() {
       <Link href="/practica17" style={styles.enlace}>
         Práctica 17. Tarjetas del IMC
       </Link>
+      <Link href="/practica18" style={styles.enlace}>
+        Práctica 18. Diario de emociones
+      </Link>
     </ScrollView>
   );
 }

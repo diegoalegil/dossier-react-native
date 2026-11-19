@@ -48,7 +48,8 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [15. Completar el formulario](#práctica-15-completar-el-formulario) | Terminada |
 | [16. Lista de productos](#práctica-16-lista-de-productos) | Terminada |
 | [17. Tarjetas para calcular el IMC](#práctica-17-tarjetas-para-calcular-el-imc) | Terminada |
-| De la 18 a la 40 | Pendientes |
+| [18. Diario de emociones](#práctica-18-diario-de-emociones) | Terminada |
+| De la 19 a la 40 | Pendientes |
 
 ---
 
@@ -768,6 +769,30 @@ Hacer un componente `CardPersona.tsx` con id, nombre, altura y peso que calcule 
 
 ### Problemas que tuve
 - Ninguno.
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 18. Diario de emociones
+
+### Qué hay que hacer
+Una pantalla con un `TextInput` y un botón que va guardando entradas de un diario con el texto, la fecha y la hora con segundos y un icono: sonriente si pone `:-)` y triste si pone `:-(`.
+
+### Cómo lo he hecho
+- Instalé los iconos con `npx expo install @expo/vector-icons`.
+- Las entradas van en un array del estado y se ven en una `FlatList`.
+- La fecha la saco con `new Date().toLocaleString('es-ES')`.
+- El icono lo elijo con varios `if` y `texto.includes(...)`. Puse también `:-D`, `;-)` y `:-O`.
+
+### Capturas
+![Práctica 18: el diario con varias entradas](capturas/practica-18-diario.jpg)
+
+![Práctica 18: la función para añadir](capturas/practica-18-anadir.jpg)
+
+### Problemas que tuve
+- No salían los iconos hasta que instalé `@expo/vector-icons`.
 
 ### Estado
 Terminada.
