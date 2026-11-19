@@ -21,6 +21,7 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 
 - `src/app/`: las rutas de Expo Router. Cada práctica tiene su archivo (`practica01.tsx`, `practica02.tsx`...) que solo exporta su pantalla, por ejemplo `export { default } from '../screens/HolaMundoScreen';`. La 2 y la 3 van juntas en `practica02.tsx`, porque la 3 es el mismo contador pasado a `InicioScreen`, y la 10 y la 11 en `practica10.tsx`, porque la 11 es la misma calculadora con un hook. El `index.tsx` es el índice con los `Link`.
 - `src/app/_layout.tsx`: cambié las pestañas que traía la plantilla por un `Stack`, con el título de cada práctica arriba y la flecha para volver al índice. También quité `explore.tsx`, que era de la plantilla.
+- `src/app/stack/`: las prácticas con varias pantallas, cada una en su carpeta (`p20`, `p21`...) con su `_layout.tsx`.
 - `src/screens/`: el código de cada pantalla.
 - `src/components/`: los componentes que reutilizo.
 - `src/hooks/`: mis hooks, como `useCalculadora.ts`. Los demás archivos de esa carpeta venían con la plantilla.
@@ -50,7 +51,8 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [17. Tarjetas para calcular el IMC](#práctica-17-tarjetas-para-calcular-el-imc) | Terminada |
 | [18. Diario de emociones](#práctica-18-diario-de-emociones) | Terminada |
 | [19. Insertar emoticonos en el texto](#práctica-19-insertar-emoticonos-en-el-texto) | Terminada |
-| De la 20 a la 40 | Pendientes |
+| [20. Primer Stack](#práctica-20-primer-stack) | Terminada |
+| De la 21 a la 40 | Pendientes |
 
 ---
 
@@ -816,6 +818,29 @@ Poner varios iconos de emociones encima de un `TextInput` y que al pulsar uno se
 
 ### Problemas que tuve
 - Ninguno.
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 20. Primer Stack
+
+### Qué hay que hacer
+Hacer una HomeScreen que vaya a una segunda pantalla y se pueda volver, todo dentro de `src/app/stack/p20/` y con un enlace desde el índice.
+
+### Cómo lo he hecho
+- Creé `src/app/stack/p20/` con `_layout.tsx` (el `Stack`), `index.tsx` (la HomeScreen) y `detalle.tsx`.
+- Para ir uso `router.push('/stack/p20/detalle')` y para volver `router.back()`.
+- En el `_layout.tsx` principal puse `headerShown: false` en `stack/p20` para que no salgan dos cabeceras.
+
+### Capturas
+![Práctica 20: la HomeScreen](capturas/practica-20-home.jpg)
+
+![Práctica 20: la segunda pantalla](capturas/practica-20-detalle.jpg)
+
+### Problemas que tuve
+- Salían dos cabeceras hasta que puse `headerShown: false`.
 
 ### Estado
 Terminada.
