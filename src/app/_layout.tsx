@@ -37,6 +37,7 @@ export default function RootLayout() {
         <Stack.Screen name="stack/p23" options={{ headerShown: false }} />
         <Stack.Screen name="drawer/p24" options={{ headerShown: false }} />
         <Stack.Screen name="drawer/p25" options={{ headerShown: false }} />
+        <Stack.Screen name="drawer/p26" options={{ headerShown: false }} />
       </Stack>
     </ThemeProvider>
   );

@@ -77,6 +77,9 @@ export default function Index() {
       <Link href="/drawer/p25" style={styles.enlace}>
         Práctica 25. Drawer personalizado
       </Link>
+      <Link href="/drawer/p26" style={styles.enlace}>
+        Práctica 26. Mascotas con Drawer
+      </Link>
     </ScrollView>
   );
 }

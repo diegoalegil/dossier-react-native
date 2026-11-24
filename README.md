@@ -59,7 +59,8 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [23. Lista de tareas](#práctica-23-lista-de-tareas) | Terminada |
 | [24. Drawer con tareas y About](#práctica-24-drawer-con-tareas-y-about) | Terminada |
 | [25. Drawer personalizado y girado](#práctica-25-drawer-personalizado-y-girado) | Terminada |
-| De la 26 a la 40 | Pendientes |
+| [26. Aplicación de mascotas](#práctica-26-aplicación-de-mascotas) | Terminada |
+| De la 27 a la 40 | Pendientes |
 
 ---
 
@@ -966,6 +967,27 @@ Lo que pasa con los enlaces: si pongo `drawerContent` solo con el `Text`, el men
 
 ### Problemas que tuve
 - Primero importé `DrawerItemList` de `@react-navigation/drawer` y TypeScript daba error con las props. Lo cambié por el de `expo-router/drawer` y se arregló.
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 26. Aplicación de mascotas
+
+### Qué hay que hacer
+Una app de mascotas con Drawer y una lista. Al pulsar una mascota se abre su ficha, usando el id en la ruta para no hacer un archivo por mascota.
+
+### Cómo lo he hecho
+- Las mascotas están en un array en `src/constants/mascotas.ts` con id, nombre, especie, raza y edad.
+- En `src/components/` hice `MascotaCard`, que es cada fila de la lista, y `MascotaDetalle`, que es la ficha.
+- `src/app/drawer/p26/index.tsx` es la `FlatList`, y al pulsar hago `router.push` a `[id]` pasándole el id.
+- En `[id].tsx` cojo el id con `useLocalSearchParams` y busco la mascota con `find`. En el Drawer la oculto con `drawerItemStyle: { display: 'none' }` para que no salga «Ficha» en el menú.
+
+### Capturas
+![Práctica 26: la lista de mascotas](capturas/practica-26-lista.jpg)
+
+![Práctica 26: la ficha de una mascota](capturas/practica-26-ficha.jpg)
 
 ### Estado
 Terminada.
