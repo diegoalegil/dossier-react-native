@@ -83,6 +83,9 @@ export default function Index() {
       <Link href="/tabs/p27/inicio" style={styles.enlace}>
         Práctica 27. Tabs con Stack
       </Link>
+      <Link href="/stack/p28" style={styles.enlace}>
+        Práctica 28. Pokémon
+      </Link>
     </ScrollView>
   );
 }

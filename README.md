@@ -27,6 +27,7 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 - `src/hooks/`: mis hooks, como `useCalculadora.ts`. Los demás archivos de esa carpeta venían con la plantilla.
 - `src/app/drawer/`: las prácticas con Drawer (`p24`, `p25` y `p26`).
 - `src/app/tabs/`: las prácticas con pestañas (`p27`).
+- `src/api/`: las llamadas a la PokeAPI de la práctica 28.
 - `src/context/`: el contexto de la práctica 23.
 - `capturas/`: las capturas de este README.
 
@@ -62,7 +63,8 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [25. Drawer personalizado y girado](#práctica-25-drawer-personalizado-y-girado) | Terminada |
 | [26. Aplicación de mascotas](#práctica-26-aplicación-de-mascotas) | Terminada |
 | [27. Tabs combinadas con Stack](#práctica-27-tabs-combinadas-con-stack) | Terminada |
-| De la 28 a la 40 | Pendientes |
+| [28. Aplicación Pokémon](#práctica-28-aplicación-pokémon) | Terminada |
+| De la 29 a la 40 | Pendientes |
 
 ---
 
@@ -1011,6 +1013,27 @@ Juntar pestañas con Stack: cada pestaña abre su sección, y desde ella se entr
 ![Práctica 27: el detalle de la pestaña Inicio](capturas/practica-27-inicio.jpg)
 
 ![Práctica 27: la pestaña Perfil](capturas/practica-27-perfil.jpg)
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 28. Aplicación Pokémon
+
+### Qué hay que hacer
+Una app de Pokémon con la PokeAPI: una lista con el nombre y la imagen, y al pulsar uno, su detalle. Tiene que tener en cuenta cuando está cargando, cuando no hay resultados y cuando hay un error.
+
+### Cómo lo he hecho
+- En `src/api/pokemon.ts` hay dos funciones con `fetch`: una para la lista y otra para un Pokémon por su nombre. Si `respuesta.ok` es falso lanzan un error.
+- `PokemonCard` en `src/components/` saca la imagen con el número que viene al final de la url de cada Pokémon.
+- En la lista uso `useEffect` para cargar, un `ActivityIndicator` mientras carga, un mensaje si hay error y un buscador que dice «No hay resultados» si no encuentra nada.
+- El detalle es `[nombre].tsx` y muestra la imagen, el número, la altura, el peso y el tipo.
+
+### Capturas
+![Práctica 28: la lista de Pokémon](capturas/practica-28-lista.jpg)
+
+![Práctica 28: el detalle de Pikachu](capturas/practica-28-detalle.jpg)
 
 ### Estado
 Terminada.
