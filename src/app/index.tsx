@@ -86,6 +86,9 @@ export default function Index() {
       <Link href="/stack/p28" style={styles.enlace}>
         Práctica 28. Pokémon
       </Link>
+      <Link href="/practica29" style={styles.enlace}>
+        Práctica 29. Ubicación
+      </Link>
     </ScrollView>
   );
 }

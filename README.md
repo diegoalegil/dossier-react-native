@@ -64,7 +64,8 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [26. Aplicación de mascotas](#práctica-26-aplicación-de-mascotas) | Terminada |
 | [27. Tabs combinadas con Stack](#práctica-27-tabs-combinadas-con-stack) | Terminada |
 | [28. Aplicación Pokémon](#práctica-28-aplicación-pokémon) | Terminada |
-| De la 29 a la 40 | Pendientes |
+| [29. Localización del dispositivo](#práctica-29-localización-del-dispositivo) | Terminada |
+| De la 30 a la 40 | Pendientes |
 
 ---
 
@@ -1034,6 +1035,31 @@ Una app de Pokémon con la PokeAPI: una lista con el nombre y la imagen, y al pu
 ![Práctica 28: la lista de Pokémon](capturas/practica-28-lista.jpg)
 
 ![Práctica 28: el detalle de Pikachu](capturas/practica-28-detalle.jpg)
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 29. Localización del dispositivo
+
+### Qué hay que hacer
+Una pantalla con un botón para pedir el permiso de ubicación y otro para sacar las coordenadas, y enseñar la latitud y la longitud. Si se rechaza el permiso o no se puede sacar la posición, hay que decirlo.
+
+### Cómo lo he hecho
+- Instalé `expo-location` con `npx expo install expo-location`.
+- «Pedir permiso» llama a `requestForegroundPermissionsAsync` y pone un mensaje si se concede o se rechaza.
+- «Obtener ubicación» mira primero el permiso con `getForegroundPermissionsAsync` y luego usa `getCurrentPositionAsync`. Si falla, sale «No se pudo obtener la ubicación».
+- Probé a darle a «Don't allow» y salió el mensaje de que había rechazado el permiso.
+- Le puse al emulador una ubicación simulada en Las Palmas de Gran Canaria con `adb emu geo fix`.
+
+### Capturas
+![Práctica 29: pidiendo el permiso](capturas/practica-29-permiso.jpg)
+
+![Práctica 29: la ubicación de Las Palmas](capturas/practica-29-ubicacion.jpg)
+
+### Problemas que tuve
+- Al darle a «Obtener ubicación», el emulador pedía activar la «Location Accuracy» de Google, y si le decía que no, salía «No se pudo obtener la ubicación». Lo arreglé poniendo `accuracy: Location.Accuracy.High` y `mayShowUserSettingsDialog: false`, y así ya coge la ubicación del GPS del emulador.
 
 ### Estado
 Terminada.
