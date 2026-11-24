@@ -66,7 +66,8 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [28. Aplicación Pokémon](#práctica-28-aplicación-pokémon) | Terminada |
 | [29. Localización del dispositivo](#práctica-29-localización-del-dispositivo) | Terminada |
 | [30. Historial de ubicaciones](#práctica-30-historial-de-ubicaciones) | Terminada |
-| De la 31 a la 40 | Pendientes |
+| [31. Contenido web y noticias](#práctica-31-contenido-web-y-noticias) | Terminada |
+| De la 32 a la 40 | Pendientes |
 
 ---
 
@@ -1083,6 +1084,31 @@ Ampliar la práctica 29: el botón de la ubicación guarda en AsyncStorage la la
 ![Práctica 30: guardando dos posiciones](capturas/practica-30-guardar.jpg)
 
 ![Práctica 30: el historial después de cerrar y abrir la app](capturas/practica-30-reabrir.jpg)
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 31. Contenido web y noticias
+
+### Qué hay que hacer
+Cargar una página web en una pantalla y, con una fuente RSS, sacar las noticias, procesar el XML y enseñar los títulos y los enlaces en una lista. Al pulsar una noticia se abre en una WebView.
+
+### Cómo lo he hecho
+- Instalé `react-native-webview` con `npx expo install` y `fast-xml-parser` para pasar el XML a objetos.
+- En `src/app/stack/p31/index.tsx` hago `fetch` al RSS de BBC Mundo (`https://feeds.bbci.co.uk/mundo/rss.xml`), lo paso con `new XMLParser()` y las noticias están en `datos.rss.channel.item`.
+- La lista enseña el título y el enlace de cada noticia. Arriba hay un botón que abre la web de React Native.
+- `web.tsx` es una `WebView` que recibe la url por params, y sirve para la web de React Native y para las noticias.
+- La fuente de BBC Mundo funcionó a la primera, así que no tuve que cambiarla.
+
+### Capturas
+![Práctica 31: la lista de noticias del RSS](capturas/practica-31-noticias.jpg)
+
+![Práctica 31: una noticia abierta en la WebView](capturas/practica-31-web.jpg)
+
+### Problemas que tuve
+- Al abrir la noticia salía el aviso de cookies de la BBC dentro de la WebView. Le di a «I do not agree».
 
 ### Estado
 Terminada.
