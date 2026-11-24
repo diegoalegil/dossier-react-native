@@ -89,6 +89,9 @@ export default function Index() {
       <Link href="/practica29" style={styles.enlace}>
         Práctica 29. Ubicación
       </Link>
+      <Link href="/practica30" style={styles.enlace}>
+        Práctica 30. Historial de ubicaciones
+      </Link>
     </ScrollView>
   );
 }

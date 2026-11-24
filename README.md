@@ -65,7 +65,8 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [27. Tabs combinadas con Stack](#práctica-27-tabs-combinadas-con-stack) | Terminada |
 | [28. Aplicación Pokémon](#práctica-28-aplicación-pokémon) | Terminada |
 | [29. Localización del dispositivo](#práctica-29-localización-del-dispositivo) | Terminada |
-| De la 30 a la 40 | Pendientes |
+| [30. Historial de ubicaciones](#práctica-30-historial-de-ubicaciones) | Terminada |
+| De la 31 a la 40 | Pendientes |
 
 ---
 
@@ -1060,6 +1061,28 @@ Una pantalla con un botón para pedir el permiso de ubicación y otro para sacar
 
 ### Problemas que tuve
 - Al darle a «Obtener ubicación», el emulador pedía activar la «Location Accuracy» de Google, y si le decía que no, salía «No se pudo obtener la ubicación». Lo arreglé poniendo `accuracy: Location.Accuracy.High` y `mayShowUserSettingsDialog: false`, y así ya coge la ubicación del GPS del emulador.
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 30. Historial de ubicaciones
+
+### Qué hay que hacer
+Ampliar la práctica 29: el botón de la ubicación guarda en AsyncStorage la latitud, la longitud y el timestamp, y sale un mensaje con la posición guardada. Otro botón, «Historial», enseña todas las posiciones guardadas, y tienen que seguir ahí después de cerrar la app.
+
+### Cómo lo he hecho
+- No toqué la 29: hice otra pantalla, `HistorialUbicacionesScreen.tsx`, con lo mismo y lo nuevo.
+- Instalé `@react-native-async-storage/async-storage` con `npx expo install`.
+- Al guardar pido el permiso si hace falta, saco la posición, leo la lista con `getItem` y `JSON.parse`, le añado `{ lat, lon, timestamp }` y la vuelvo a guardar con `setItem` y `JSON.stringify`.
+- «Historial» lee la lista y la enseña en una `FlatList` con la fecha y las coordenadas.
+- Guardé dos posiciones: una en Las Palmas y otra en Santa Cruz de Tenerife, cambiando la ubicación simulada con `adb emu geo fix`. Cerré Expo Go, lo volví a abrir y las dos seguían saliendo.
+
+### Capturas
+![Práctica 30: guardando dos posiciones](capturas/practica-30-guardar.jpg)
+
+![Práctica 30: el historial después de cerrar y abrir la app](capturas/practica-30-reabrir.jpg)
 
 ### Estado
 Terminada.
