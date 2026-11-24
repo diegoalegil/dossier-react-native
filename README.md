@@ -26,6 +26,7 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 - `src/components/`: los componentes que reutilizo.
 - `src/hooks/`: mis hooks, como `useCalculadora.ts`. Los demás archivos de esa carpeta venían con la plantilla.
 - `src/app/drawer/`: las prácticas con Drawer (`p24`, `p25` y `p26`).
+- `src/app/tabs/`: las prácticas con pestañas (`p27`).
 - `src/context/`: el contexto de la práctica 23.
 - `capturas/`: las capturas de este README.
 
@@ -60,7 +61,8 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [24. Drawer con tareas y About](#práctica-24-drawer-con-tareas-y-about) | Terminada |
 | [25. Drawer personalizado y girado](#práctica-25-drawer-personalizado-y-girado) | Terminada |
 | [26. Aplicación de mascotas](#práctica-26-aplicación-de-mascotas) | Terminada |
-| De la 27 a la 40 | Pendientes |
+| [27. Tabs combinadas con Stack](#práctica-27-tabs-combinadas-con-stack) | Terminada |
+| De la 28 a la 40 | Pendientes |
 
 ---
 
@@ -988,6 +990,27 @@ Una app de mascotas con Drawer y una lista. Al pulsar una mascota se abre su fic
 ![Práctica 26: la lista de mascotas](capturas/practica-26-lista.jpg)
 
 ![Práctica 26: la ficha de una mascota](capturas/practica-26-ficha.jpg)
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 27. Tabs combinadas con Stack
+
+### Qué hay que hacer
+Juntar pestañas con Stack: cada pestaña abre su sección, y desde ella se entra a un detalle y se vuelve sin que cambien las otras pestañas.
+
+### Cómo lo he hecho
+- En `src/app/tabs/p27/_layout.tsx` hay un `Tabs` con dos pestañas, Inicio y Perfil, cada una con su icono de `FontAwesome5` en `tabBarIcon`.
+- Cada pestaña es una carpeta (`inicio` y `perfil`) con su `_layout.tsx` con un `Stack`, su `index.tsx` y su `detalle.tsx`.
+- En el `Tabs` puse `headerShown: false` para que solo salga la cabecera del Stack, que es la que tiene la flecha de volver.
+- Si entro al detalle de Inicio, me cambio a Perfil y vuelvo, Inicio sigue en el detalle.
+
+### Capturas
+![Práctica 27: el detalle de la pestaña Inicio](capturas/practica-27-inicio.jpg)
+
+![Práctica 27: la pestaña Perfil](capturas/practica-27-perfil.jpg)
 
 ### Estado
 Terminada.

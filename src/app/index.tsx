@@ -80,6 +80,9 @@ export default function Index() {
       <Link href="/drawer/p26" style={styles.enlace}>
         Práctica 26. Mascotas con Drawer
       </Link>
+      <Link href="/tabs/p27/inicio" style={styles.enlace}>
+        Práctica 27. Tabs con Stack
+      </Link>
     </ScrollView>
   );
 }
