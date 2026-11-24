@@ -58,7 +58,8 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [22. Personalizar la cabecera](#práctica-22-personalizar-la-cabecera) | Terminada |
 | [23. Lista de tareas](#práctica-23-lista-de-tareas) | Terminada |
 | [24. Drawer con tareas y About](#práctica-24-drawer-con-tareas-y-about) | Terminada |
-| De la 25 a la 40 | Pendientes |
+| [25. Drawer personalizado y girado](#práctica-25-drawer-personalizado-y-girado) | Terminada |
+| De la 26 a la 40 | Pendientes |
 
 ---
 
@@ -938,6 +939,33 @@ Un Drawer con dos opciones: Tareas, que lleva a un Stack con la lista de tareas 
 
 ### Problemas que tuve
 - En el emulador, al deslizar desde el borde izquierdo Android hacía el gesto de volver atrás en vez de abrir el menú, así que lo abro con el botón de arriba.
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 25. Drawer personalizado y girado
+
+### Qué hay que hacer
+Repetir el ejemplo de las opciones del Drawer cambiando el color del menú y poniéndole 200 de ancho, probar `drawerContent` con un contenido propio y girar el emulador para ver si el menú sigue saliendo.
+
+### Cómo lo he hecho
+- En `src/app/drawer/p25/_layout.tsx` le pongo `drawerStyle: { width: 200, backgroundColor: 'lightyellow' }` y la cabecera en naranja.
+- En `drawerContent` pongo un `DrawerContentScrollView` con un `Text` que dice «Menú de Diego» y debajo el `DrawerItemList`.
+- Para que la app pueda girar cambié `orientation` de `portrait` a `default` en `app.json`.
+
+Lo que pasa con los enlaces: si pongo `drawerContent` solo con el `Text`, el menú sale pero vacío, sin Inicio ni About, porque mi contenido sustituye al de por defecto. Al añadir `<DrawerItemList {...props} />` vuelven a salir los enlaces y funcionan.
+
+### Capturas
+![Práctica 25: drawerContent sin DrawerItemList, sin enlaces](capturas/practica-25-sin-enlaces.jpg)
+
+![Práctica 25: el menú en vertical](capturas/practica-25-vertical.jpg)
+
+![Práctica 25: el menú en horizontal](capturas/practica-25-horizontal.jpg)
+
+### Problemas que tuve
+- Primero importé `DrawerItemList` de `@react-navigation/drawer` y TypeScript daba error con las props. Lo cambié por el de `expo-router/drawer` y se arregló.
 
 ### Estado
 Terminada.

@@ -74,6 +74,9 @@ export default function Index() {
       <Link href="/drawer/p24/tareas" style={styles.enlace}>
         Práctica 24. Drawer con tareas y About
       </Link>
+      <Link href="/drawer/p25" style={styles.enlace}>
+        Práctica 25. Drawer personalizado
+      </Link>
     </ScrollView>
   );
 }
