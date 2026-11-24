@@ -25,6 +25,7 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 - `src/screens/`: el código de cada pantalla.
 - `src/components/`: los componentes que reutilizo.
 - `src/hooks/`: mis hooks, como `useCalculadora.ts`. Los demás archivos de esa carpeta venían con la plantilla.
+- `src/app/drawer/`: las prácticas con Drawer (`p24`, `p25` y `p26`).
 - `src/context/`: el contexto de la práctica 23.
 - `capturas/`: las capturas de este README.
 
@@ -56,7 +57,8 @@ Desde la práctica 4 la app abre con un índice que tiene un enlace a cada prác
 | [21. Stack con tres pantallas](#práctica-21-stack-con-tres-pantallas) | Terminada |
 | [22. Personalizar la cabecera](#práctica-22-personalizar-la-cabecera) | Terminada |
 | [23. Lista de tareas](#práctica-23-lista-de-tareas) | Terminada |
-| De la 24 a la 40 | Pendientes |
+| [24. Drawer con tareas y About](#práctica-24-drawer-con-tareas-y-about) | Terminada |
+| De la 25 a la 40 | Pendientes |
 
 ---
 
@@ -913,6 +915,29 @@ Una lista de tareas con `FlatList` y otra pantalla para crear o editar. Se puede
 
 ### Problemas que tuve
 - TypeScript decía que `/stack/p23/editar` no era una ruta válida hasta que Expo generó los tipos de las rutas nuevas.
+
+### Estado
+Terminada.
+
+---
+
+## Práctica 24. Drawer con tareas y About
+
+### Qué hay que hacer
+Un Drawer con dos opciones: Tareas, que lleva a un Stack con la lista de tareas y su pantalla de detalle, y About, con mis datos. Se puede aprovechar lo de la práctica 23 sin borrarla.
+
+### Cómo lo he hecho
+- En `src/app/drawer/p24/_layout.tsx` pongo el `Drawer` de `expo-router/drawer` dentro de un `GestureHandlerRootView`, y el `TareasProvider` de la práctica 23 alrededor.
+- La carpeta `tareas` tiene su propio `_layout.tsx` con un `Stack`. La lista y la pantalla de editar son las de la 23 con las rutas cambiadas.
+- `about.tsx` son unos `Text` con mi nombre, el curso y el módulo.
+
+### Capturas
+![Práctica 24: el menú del Drawer](capturas/practica-24-menu.jpg)
+
+![Práctica 24: la pantalla About](capturas/practica-24-about.jpg)
+
+### Problemas que tuve
+- En el emulador, al deslizar desde el borde izquierdo Android hacía el gesto de volver atrás en vez de abrir el menú, así que lo abro con el botón de arriba.
 
 ### Estado
 Terminada.
